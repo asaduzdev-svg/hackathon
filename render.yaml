@@ -1,0 +1,9 @@
+databases:
+  - name: khakaton-crm-db
+    plan: free
+    region: frankfurt
+    databaseName: khakaton
+    user: khakaton
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
