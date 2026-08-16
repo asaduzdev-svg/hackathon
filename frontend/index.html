@@ -1,10 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="uz">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hackathon</title>
+    <meta name="description" content="ServiceCore — simple CRM for service businesses. Manage repair orders, customers and payments from your phone." />
+    <title>ServiceCore</title>
+    <script>
+      ;(function () {
+        try {
+          var t = localStorage.getItem('servicecore.theme')
+          var resolve = function (mode) {
+            if (mode === 'light' || mode === 'dark') return mode
+            var m = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+            return m && m.matches ? 'dark' : 'light'
+          }
+          document.documentElement.dataset.theme = resolve(t)
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
