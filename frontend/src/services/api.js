@@ -2,7 +2,8 @@
 //   - All requests carry credentials so the JWT cookie is sent.
 //   - On 401 (except for /auth/*) we try a single /auth/refresh and retry.
 //   - Thrown errors carry `status` and a translated-friendly message.
-const BASE = '/api'
+const API_BASE = import.meta.env?.VITE_API_URL || 'https://khakaton-backend.onrender.com'
+const BASE = `${API_BASE}/api`
 
 let refreshPromise = null
 
