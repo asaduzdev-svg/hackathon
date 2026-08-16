@@ -15,11 +15,12 @@ import Card from '../components/common/Card.jsx'
 import Badge from '../components/common/Badge.jsx'
 import StatCard from '../components/common/StatCard.jsx'
 import Table from '../components/common/Table.jsx'
+import { SkeletonRows } from '../components/common/Skeleton.jsx'
 import { formatDateTime } from '../utils/formatDate.js'
 
 export default function Payments() {
   const { t } = useI18n()
-  const { payments, orders } = useApp()
+  const { payments, orders, loading } = useApp()
   const [search, setSearch] = useState('')
   const debounced = useDebounce(search)
 
@@ -79,12 +80,16 @@ export default function Payments() {
         <SearchInput value={search} onChange={setSearch} placeholder={t('payments.search')} className="max-w-xs" />
       </div>
 
+      {loading ? (
+        <SkeletonRows count={5} />
+      ) : (
       <Table
         columns={columns}
         rows={filtered}
         mobileRender={mobileRender}
         empty={{ icon: Wallet, title: t('payments.empty'), description: t('payments.empty') }}
       />
+      )}
     </div>
   )
 }

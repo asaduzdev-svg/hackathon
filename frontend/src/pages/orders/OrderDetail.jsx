@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Check, Plus, Wallet, XCircle } from 'lucide-react'
+import { ArrowLeft, Check, Plus, UserRound, Wallet, XCircle } from 'lucide-react'
 import { useApp } from '../../context/AppContext.jsx'
 import { useI18n } from '../../i18n/index.jsx'
 import { useToast } from '../../context/ToastContext.jsx'
@@ -45,7 +45,7 @@ export default function OrderDetail() {
   const { t } = useI18n()
   const navigate = useNavigate()
   const toast = useToast()
-  const { orders, payments, updateOrderStatus, cancelOrder, addPayment } = useApp()
+  const { orders, payments, workers, updateOrderStatus, cancelOrder, addPayment, assignWorker } = useApp()
 
   const order = orders.find((o) => o.id === id)
   const loading = usePageLoading([id])
@@ -59,6 +59,7 @@ export default function OrderDetail() {
   const [paymentAmount, setPaymentAmount] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('cash')
   const [cancelReason, setCancelReason] = useState('customer')
+  const [workerId, setWorkerId] = useState(order?.workerId || '')
 
   const orderPayments = useMemo(
     () => payments.filter((p) => p.orderId === id).sort((a, b) => new Date(b.date) - new Date(a.date)),
@@ -133,6 +134,19 @@ export default function OrderDetail() {
     }
   }
 
+  const handleAssignWorker = async () => {
+    if (!workerId || workerId === order.workerId) return
+    setPending(true)
+    try {
+      await assignWorker(order.id, workerId)
+      toast.success('toasts.workerAssigned')
+    } catch {
+      toast.error('error.title')
+    } finally {
+      setPending(false)
+    }
+  }
+
   return (
     <div className="max-w-4xl">
       <PageHeader title={t('orders.detailTitle', { id: order.id })}>
@@ -153,9 +167,12 @@ export default function OrderDetail() {
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               <Field label={t('common.customer')} value={order.customerName} />
               <Field label={t('common.phone')} value={order.phone} />
-              <Field label={t('orders.create.deviceType')} value={t(DEVICE_TYPE_LABEL_KEY[order.deviceType])} />
-              <Field label={t('orders.create.brand')} value={`${order.brand} ${order.model}`} />
-              <Field label={t('orders.createdAt')} value={formatDate(order.createdAt)} />
+              <Field label={t('orders.create.deviceType')} value={t(DEVICE_TYPE_LABEL_KEY[order.carType])} />
+              <Field label={t('orders.create.brand')} value={`${order.make} ${order.model}`} />
+              <Field label={t('orders.create.plate')} value={order.plate} />
+              <Field label={t('orders.create.year')} value={order.year} />
+              <Field label={t('orders.col.worker')} value={order.workerName} />
+              <Field label={t('orders.create.day')} value={formatDateTime(order.expectedDate)} />
               <Field label={t('orders.create.notes')} value={order.notes} />
             </div>
             <div className="mt-4 border-t border-border pt-4">
@@ -220,6 +237,31 @@ export default function OrderDetail() {
                 {t('orders.addPayment')}
               </Button>
             )}
+          </Card>
+
+          <Card className="p-5">
+            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
+              <UserRound size={15} className="text-muted" />
+              {t('orders.col.worker')}
+            </h2>
+            <div className="space-y-2.5">
+              <Select
+                value={workerId}
+                onChange={(e) => setWorkerId(e.target.value)}
+                options={workers.map((w) => ({ value: w.id, label: w.name }))}
+                placeholder={t('orders.assignWorker')}
+              />
+              <Button
+                className="w-full"
+                variant="outline"
+                icon={Check}
+                onClick={handleAssignWorker}
+                loading={pending}
+                disabled={!workerId || workerId === order.workerId}
+              >
+                {t('orders.assignWorker')}
+              </Button>
+            </div>
           </Card>
 
           {order.status !== 'cancelled' && order.status !== 'completed' && (

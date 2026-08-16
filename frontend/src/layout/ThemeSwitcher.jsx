@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Check, Laptop, Moon, Sun } from 'lucide-react'
-import { useTheme, THEMES } from '../context/ThemeContext.jsx'
+import { useTheme } from '../context/ThemeContext.jsx'
 import { useI18n } from '../i18n/index.jsx'
 import { useClickOutside } from '../hooks/useClickOutside.js'
 
 const OPTIONS = [
-  { value: THEMES.LIGHT, icon: Sun, labelKey: 'common.light' },
-  { value: THEMES.DARK, icon: Moon, labelKey: 'common.dark' },
-  { value: THEMES.SYSTEM, icon: Laptop, labelKey: 'common.system' },
+  { value: 'light', icon: Sun, labelKey: 'common.light' },
+  { value: 'dark', icon: Moon, labelKey: 'common.dark' },
+  { value: 'system', icon: Laptop, labelKey: 'common.system' },
 ]
 
 const CURRENT_ICON = { light: Sun, dark: Moon, system: Laptop }

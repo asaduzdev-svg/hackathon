@@ -1,11 +1,16 @@
-export default function PageHeader({ title, subtitle, children }) {
+export default function PageHeader({ title, description, actions, eyebrow, className = '' }) {
   return (
-    <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className={`mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-end sm:justify-between ${className}`}>
       <div className="min-w-0">
+        {eyebrow && (
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {eyebrow}
+          </p>
+        )}
         <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{title}</h1>
-        {subtitle && <p className="mt-0.5 text-sm text-muted-foreground">{subtitle}</p>}
+        {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
       </div>
-      {children && <div className="flex shrink-0 items-center gap-2">{children}</div>}
+      {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </div>
   )
 }

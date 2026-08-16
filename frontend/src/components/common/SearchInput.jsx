@@ -1,25 +1,33 @@
 import { Search, X } from 'lucide-react'
 
-export default function SearchInput({ value, onChange, placeholder, className = '', 'aria-label': ariaLabel }) {
+export default function SearchInput({
+  value,
+  onChange,
+  placeholder,
+  className = '',
+  autoFocus = false,
+}) {
   return (
-    <div className={`relative w-full ${className}`}>
-      <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+    <div
+      className={`relative flex items-center rounded-lg border border-border bg-surface focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/15 ${className}`}
+    >
+      <Search size={16} className="pointer-events-none absolute left-3 text-muted-foreground" />
       <input
         type="search"
         value={value}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        aria-label={ariaLabel || placeholder}
-        className="h-10 w-full rounded-lg border border-border bg-surface pl-9 pr-9 text-sm text-foreground placeholder:text-muted transition-colors focus:border-primary focus:outline-2 focus:outline-ring/60 [&::-webkit-search-cancel-button]:hidden"
+        autoFocus={autoFocus}
+        className="min-w-0 flex-1 bg-transparent py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
       />
       {value && (
         <button
           type="button"
+          onClick={() => onChange('')}
           aria-label="Clear"
-          onClick={() => onChange?.('')}
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-0.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground"
+          className="absolute right-2 rounded-md p-1 text-muted-foreground hover:bg-surface-muted hover:text-foreground"
         >
-          <X size={15} />
+          <X size={14} />
         </button>
       )}
     </div>

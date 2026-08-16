@@ -1,17 +1,17 @@
-export const DEVICE_TYPES = ['phone', 'laptop', 'computer', 'tablet', 'macbook']
+export const DEVICE_TYPES = ['sedan', 'suv', 'hatchback', 'minivan', 'pickup']
 
 export const DEVICE_TYPE_LABEL_KEY = {
-  phone: 'deviceType.phone',
-  laptop: 'deviceType.laptop',
-  computer: 'deviceType.computer',
-  tablet: 'deviceType.tablet',
-  macbook: 'deviceType.macbook',
+  sedan: 'carType.sedan',
+  suv: 'carType.suv',
+  hatchback: 'carType.hatchback',
+  minivan: 'carType.minivan',
+  pickup: 'carType.pickup',
 }
 
 export const DEVICE_BRANDS = {
-  phone: ['Apple', 'Samsung', 'Xiaomi', 'Redmi', 'Huawei', 'Honor', 'OPPO', 'Vivo', 'Infinix', 'Tecno'],
-  laptop: ['Asus', 'Lenovo', 'HP', 'Dell', 'Acer', 'Huawei', 'MSI'],
-  computer: ['Asus', 'HP', 'Dell', 'Lenovo', 'Acer', 'Custom'],
-  tablet: ['Apple', 'Samsung', 'Xiaomi', 'Huawei', 'Lenovo'],
-  macbook: ['Apple'],
+  sedan: ['Chevrolet', 'Toyota', 'Hyundai', 'Kia', 'Lada', 'Damas', 'Nexia', 'Cobalt', 'Lacetti', 'DaeWoo'],
+  suv: ['Chevrolet', 'Toyota', 'Kia', 'Hyundai', 'Mitsubishi', 'Nissan', 'Honda', 'Geely', 'Chery', 'Haval'],
+  hatchback: ['Hyundai', 'Kia', 'Chevrolet', 'Toyota', 'Volkswagen', 'Ford', 'Lada'],
+  minivan: ['Chevrolet', 'Hyundai', 'Kia', 'Toyota', 'Chrysler', 'Mitsubishi'],
+  pickup: ['Ford', 'Toyota', 'Chevrolet', 'Nissan', 'Mitsubishi', 'Isuzu', 'Great Wall'],
 }

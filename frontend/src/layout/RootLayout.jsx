@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import Topbar from './Topbar.jsx'
 import Sidebar from './Sidebar.jsx'
 import MobileDrawer from './MobileDrawer.jsx'
 import GlobalSearch from './GlobalSearch.jsx'
+import AiAssistant from '../components/ai/AiAssistant.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 export default function RootLayout() {
+  const { user, loading } = useAuth()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
 
@@ -19,6 +22,9 @@ export default function RootLayout() {
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [])
+
+  if (loading) return null
+  if (!user) return <Navigate to="/login" replace />
 
   return (
     <div className="flex min-h-dvh bg-background text-foreground">

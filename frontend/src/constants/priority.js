@@ -1,12 +1,18 @@
-export const PRIORITIES = ['normal', 'urgent']
+export const PRIORITY = ['low', 'normal', 'high', 'urgent']
+
+export const PRIORITIES = PRIORITY
 
 export const PRIORITY_LABEL_KEY = {
+  low: 'priority.low',
   normal: 'priority.normal',
+  high: 'priority.high',
   urgent: 'priority.urgent',
 }
 
 export const PRIORITY_TONE = {
+  low: 'muted',
   normal: 'info',
+  high: 'warning',
   urgent: 'danger',
 }
 

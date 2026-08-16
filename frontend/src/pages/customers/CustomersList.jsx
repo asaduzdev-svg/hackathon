@@ -1,34 +1,27 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { useCustomers } from '../../hooks/useCustomers.js'
 import { useApp } from '../../context/AppContext.jsx'
 import { useI18n } from '../../i18n/index.jsx'
-import { useToast } from '../../context/ToastContext.jsx'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import { addDays } from '../../utils/formatDate.js'
 import { formatCurrency } from '../../utils/formatCurrency.js'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import SearchInput from '../../components/common/SearchInput.jsx'
-import Button from '../../components/common/Button.jsx'
 import Badge from '../../components/common/Badge.jsx'
 import Avatar from '../../components/common/Avatar.jsx'
 import Table from '../../components/common/Table.jsx'
 import Card from '../../components/common/Card.jsx'
-import Modal from '../../components/common/Modal.jsx'
-import Input from '../../components/common/Input.jsx'
+import { SkeletonRows } from '../../components/common/Skeleton.jsx'
 
 export default function CustomersList() {
   const { t } = useI18n()
-  const { customers, createCustomer } = useCustomers()
-  const { orders } = useApp()
-  const toast = useToast()
+  const { customers } = useCustomers()
+  const { orders, loading } = useApp()
   const navigate = useNavigate()
 
   const [search, setSearch] = useState('')
-  const [modalOpen, setModalOpen] = useState(false)
-  const [form, setForm] = useState({ name: '', phone: '', telegram: '' })
-  const [saving, setSaving] = useState(false)
   const debounced = useDebounce(search)
 
   const stats = useMemo(() => {
@@ -55,20 +48,6 @@ export default function CustomersList() {
     const list = stats.get(c.id)?.orders || []
     const cutoff = addDays(new Date(), -30)
     return list.some((o) => new Date(o.createdAt) >= cutoff)
-  }
-
-  const submit = async (e) => {
-    e.preventDefault()
-    if (!form.name.trim()) return
-    setSaving(true)
-    try {
-      await createCustomer(form)
-      toast.success('toasts.customerCreated')
-      setModalOpen(false)
-      setForm({ name: '', phone: '', telegram: '' })
-    } finally {
-      setSaving(false)
-    }
   }
 
   const columns = [
@@ -119,16 +98,15 @@ export default function CustomersList() {
 
   return (
     <div>
-      <PageHeader title={t('customers.title')} subtitle={t('customers.subtitle')}>
-        <Button icon={Plus} onClick={() => setModalOpen(true)}>
-          {t('customers.create')}
-        </Button>
-      </PageHeader>
+      <PageHeader title={t('customers.title')} subtitle={t('customers.subtitle')} />
 
       <div className="mb-4">
         <SearchInput value={search} onChange={setSearch} placeholder={t('customers.search')} className="max-w-xs" />
       </div>
 
+      {loading ? (
+        <SkeletonRows count={6} />
+      ) : (
       <Table
         columns={columns}
         rows={filtered}
@@ -136,22 +114,7 @@ export default function CustomersList() {
         mobileRender={mobileRender}
         empty={{ icon: Users, title: t('customers.empty'), description: t('customers.emptyCta') }}
       />
-
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={t('customers.createTitle')} size="sm">
-        <form onSubmit={submit} className="space-y-4">
-          <Input label={t('common.name')} required value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
-          <Input label={t('common.phone')} value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} placeholder="+998 90 000 00 00" />
-          <Input label={t('customers.detail.telegram')} value={form.telegram} onChange={(e) => setForm((f) => ({ ...f, telegram: e.target.value }))} placeholder="@username" />
-          <div className="flex justify-end gap-2">
-            <Button type="button" variant="ghost" onClick={() => setModalOpen(false)} disabled={saving}>
-              {t('common.cancel')}
-            </Button>
-            <Button type="submit" loading={saving}>
-              {t('common.save')}
-            </Button>
-          </div>
-        </form>
-      </Modal>
+      )}
     </div>
   )
 }

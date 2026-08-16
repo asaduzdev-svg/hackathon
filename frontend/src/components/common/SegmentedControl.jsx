@@ -1,27 +1,22 @@
-export default function SegmentedControl({ options, value, onChange, size = 'md', className = '' }) {
+export default function SegmentedControl({ value, onChange, options, className = '' }) {
   return (
     <div
-      role="tablist"
-      className={`inline-flex items-center gap-1 rounded-lg border border-border bg-surface-muted p-1 ${className}`}
+      className={`inline-flex items-center gap-1 rounded-lg border border-border bg-surface p-1 ${className}`}
     >
-      {options.map((opt) => {
-        const active = opt.value === value
+      {options.map((o) => {
+        const active = o.value === value
         return (
           <button
-            key={opt.value}
+            key={o.value}
             type="button"
-            role="tab"
-            aria-selected={active}
-            onClick={() => onChange?.(opt.value)}
-            className={`rounded-md font-medium transition-colors duration-150 ${
-              size === 'sm' ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
-            } ${
+            onClick={() => onChange(o.value)}
+            className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
               active
-                ? 'bg-surface text-foreground shadow-sm'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'bg-primary text-primary-foreground shadow-sm'
+                : 'text-muted-foreground hover:bg-surface-muted hover:text-foreground'
             }`}
           >
-            {opt.label}
+            {o.label}
           </button>
         )
       })}

@@ -1,0 +1,202 @@
+// Prisma schema for Auto Service CRM
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Auth ----------
+
+model User {
+  id             String         @id @default(cuid())
+  name           String
+  email          String         @unique
+  password       String
+  role           String         @default("OWNER") // OWNER | WORKER | CUSTOMER
+  phone          String?
+  active         Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  refreshTokens  RefreshToken[]
+  telegramChats  TelegramChat[]
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------- Business ----------
+
+model Customer {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  phone     String   @unique
+  telegram  String?
+  notes     String   @default("")
+  createdAt DateTime @default(now())
+  orders    Order[]
+  appointments Appointment[]
+}
+
+model Worker {
+  id        String  @id @default(cuid())
+  code      String  @unique
+  name      String
+  phone     String
+  specialization String @default("mechanic")
+  joinedAt  DateTime @default(now())
+  rating    Float   @default(4.5)
+  orders    Order[]
+  appointments Appointment[]
+}
+
+model Order {
+  id              String         @id @default(cuid())
+  code            String         @unique
+  customerId      String
+  customer        Customer       @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  workerId        String?
+  worker          Worker?        @relation(fields: [workerId], references: [id], onDelete: SetNull)
+  carType         String         @default("sedan")
+  make            String         @default("")
+  model           String         @default("")
+  year            Int?
+  plate           String         @default("")
+  issue           String
+  condition       String         @default("Yaxshi")
+  status          String         @default("new")
+  priority        String         @default("normal")
+  price           Int            @default(0)
+  paid            Int            @default(0)
+  createdAt       DateTime       @default(now())
+  expectedDate    DateTime?
+  notes           String         @default("")
+  cancelledReason String         @default("")
+  timeline        OrderTimeline[]
+  payments        Payment[]
+}
+
+model OrderTimeline {
+  id      String   @id @default(cuid())
+  orderId String
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  key     String
+  vars    Json?
+  at      DateTime @default(now())
+
+  @@index([orderId])
+}
+
+model Payment {
+  id      String   @id @default(cuid())
+  code    String   @unique
+  orderId String
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  amount  Int
+  method  String   @default("cash") // cash | card | transfer
+  date    DateTime @default(now())
+  status  String   @default("completed")
+
+  @@index([orderId])
+}
+
+model Appointment {
+  id         String   @id @default(cuid())
+  code       String   @unique
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  workerId   String?
+  worker     Worker?  @relation(fields: [workerId], references: [id], onDelete: SetNull)
+  service    String
+  date       DateTime
+  time       String   @default("10:00")
+  status     String   @default("confirmed") // confirmed | waiting | completed | cancelled | no_show
+  notes      String   @default("")
+}
+
+model InventoryItem {
+  id            String             @id @default(cuid())
+  code          String             @unique
+  name          String
+  category      String             @default("engine")
+  quantity      Int                @default(0)
+  minimum       Int                @default(0)
+  purchasePrice Int                @default(0)
+  sellingPrice  Int                @default(0)
+  history       InventoryHistory[]
+}
+
+model InventoryHistory {
+  id      String        @id @default(cuid())
+  itemId  String
+  item    InventoryItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  type    String        @default("stock")
+  quantity Int
+  note    String        @default("")
+  at      DateTime      @default(now())
+
+  @@index([itemId])
+}
+
+// ---------- Telegram ----------
+
+model TelegramChat {
+  id        String   @id @default(cuid())
+  chatId    String   @unique
+  username  String?
+  firstName String?
+  active    Boolean  @default(true)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------- System ----------
+
+model Activity {
+  id    String   @id @default(cuid())
+  type  String
+  key   String
+  vars  Json?
+  at    DateTime @default(now())
+}
+
+model Notification {
+  id      String   @id @default(cuid())
+  type    String
+  bodyKey String
+  vars    Json?
+  at      DateTime @default(now())
+  read    Boolean  @default(false)
+}
+
+model Settings {
+  id                Int     @id @default(1)
+  businessName      String  @default("AutoCore")
+  businessPhone     String  @default("+998 90 000 00 00")
+  address           String  @default("")
+  hours             String  @default("09:00 — 20:00")
+  profileName       String  @default("")
+  profilePhone      String  @default("")
+  profileEmail      String  @default("")
+  notifyCustomer    Boolean @default(true)
+  notifyAppointments Boolean @default(true)
+  notifyTelegram    Boolean @default(false)
+}
+
+model Sequence {
+  name  String @id
+  value Int    @default(0)
+}

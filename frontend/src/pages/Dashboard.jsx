@@ -4,7 +4,6 @@ import { Activity, CalendarCheck, PackageCheck, Plus, Users, Wallet, Wrench } fr
 import { useApp } from '../context/AppContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useI18n } from '../i18n/index.jsx'
-import { usePageLoading } from '../hooks/usePageLoading.js'
 import { ACTIVE_STATUSES, ORDER_STATUS_LABEL_KEY, ORDER_STATUS_TONE } from '../constants/orderStatus.js'
 import { isToday, isYesterday, formatRelativeTime } from '../utils/formatDate.js'
 import { formatCurrency, formatCompact } from '../utils/formatCurrency.js'
@@ -38,8 +37,7 @@ const ACTIVITY_ICON = {
 export default function Dashboard() {
   const { t, lang } = useI18n()
   const { user } = useAuth()
-  const { orders, payments, activity } = useApp()
-  const loading = usePageLoading([])
+  const { orders, payments, activity, loading } = useApp()
 
   const kpi = useMemo(() => {
     const todayOrders = orders.filter((o) => isToday(o.createdAt))
@@ -151,7 +149,7 @@ export default function Dashboard() {
                     <span className="font-semibold">{o.id}</span> · {o.customerName}
                   </p>
                   <p className="truncate text-xs text-muted-foreground">
-                    {o.brand} {o.model} — {o.issue}
+                    {o.make} {o.model} · {o.plate} — {o.issue}
                   </p>
                 </div>
                 <span className="hidden text-sm font-medium tabular-nums text-foreground sm:block">

@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Sparkles } from 'lucide-react'
+import { LogIn, Mail, Lock, Sparkles } from 'lucide-react'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useI18n } from '../i18n/index.jsx'
 import { useToast } from '../context/ToastContext.jsx'
-import { DEMO_USERS } from '../services/authService.js'
+import { homeForRole } from '../utils/roles.js'
 import Input from '../components/common/Input.jsx'
 import Button from '../components/common/Button.jsx'
+
+const DEMO_ACCOUNTS = [
+  { label: 'Super Admin', email: 'admin@gmail.com', password: 'admin123' },
+  { label: 'Demo Owner', email: 'owner@autocore.app', password: 'demo123' },
+]
 
 export default function Login() {
   const { t } = useI18n()
@@ -29,7 +34,7 @@ export default function Login() {
     try {
       const session = await login(form.email, form.password)
       toast.success('toasts.loggedIn', { name: session.user.name })
-      navigate('/dashboard', { replace: true })
+      navigate(homeForRole(session.user.role), { replace: true })
     } catch {
       setError(t('auth.invalidCredentials'))
     } finally {
@@ -37,16 +42,20 @@ export default function Login() {
     }
   }
 
-  const fillDemo = (email) => {
-    setForm({ email, password: 'demo123' })
+  const useDemo = (acc) => {
+    setForm({ email: acc.email, password: acc.password })
     setError('')
   }
 
   return (
-    <div>
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold tracking-tight text-foreground">{t('auth.title')}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{t('auth.subtitle')}</p>
+    <div className="animate-fade-in">
+      <div className="mb-7">
+        <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary-strong">
+          <Sparkles size={11} />
+          {t('common.appName')}
+        </div>
+        <h2 className="text-2xl font-bold tracking-tight text-foreground">{t('auth.title')}</h2>
+        <p className="mt-1.5 text-sm text-muted-foreground">{t('auth.subtitle')}</p>
       </div>
 
       <form onSubmit={submit} className="space-y-4">
@@ -55,7 +64,8 @@ export default function Login() {
           label={t('auth.email')}
           value={form.email}
           onChange={set('email')}
-          placeholder="owner@demo.local"
+          placeholder="admin@gmail.com"
+          leftIcon={Mail}
           autoComplete="email"
           required
         />
@@ -65,35 +75,55 @@ export default function Login() {
           value={form.password}
           onChange={set('password')}
           placeholder="••••••••"
+          leftIcon={Lock}
+          showPasswordToggle
           autoComplete="current-password"
           required
         />
-        {error && <p className="text-sm text-danger">{error}</p>}
-        <Button type="submit" loading={loading} className="w-full">
+        <div className="flex items-center justify-between text-xs">
+          <label className="inline-flex cursor-pointer items-center gap-1.5 text-muted-foreground hover:text-foreground">
+            <input
+              type="checkbox"
+              className="h-3.5 w-3.5 cursor-pointer rounded border-border text-primary focus:ring-primary/30"
+            />
+            Eslab qolish
+          </label>
+          <button
+            type="button"
+            className="cursor-pointer text-primary-strong transition-colors hover:underline"
+          >
+            Parolni unutdingizmi?
+          </button>
+        </div>
+        {error && (
+          <div className="animate-rise rounded-lg border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger">
+            {error}
+          </div>
+        )}
+        <Button type="submit" loading={loading} icon={LogIn} className="w-full" size="lg">
           {t('auth.submit')}
         </Button>
       </form>
 
-      <div className="mt-5 rounded-xl border border-border bg-surface-muted/50 p-3.5">
-        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          <Sparkles size={13} className="text-primary-strong" />
-          {t('auth.demoTitle')}
+      <div className="mt-6 rounded-xl border border-dashed border-border bg-gradient-to-br from-surface-muted/50 to-surface p-4">
+        <p className="mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted">
+          <LogIn size={12} />
+          Demo hisoblar
         </p>
-        <p className="mt-1 text-xs text-muted">{t('auth.demoHint')}</p>
-        <div className="mt-2.5 flex flex-col gap-1.5">
-          {[
-            { email: DEMO_USERS[0].email, label: t('auth.demoOwner') },
-            { email: DEMO_USERS[1].email, label: t('auth.demoWorker') },
-            { email: DEMO_USERS[2].email, label: t('auth.demoCustomer') },
-          ].map((d) => (
+        <div className="space-y-1.5">
+          {DEMO_ACCOUNTS.map((acc) => (
             <button
-              key={d.email}
+              key={acc.email}
               type="button"
-              onClick={() => fillDemo(d.email)}
-              className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2 text-left text-sm transition-colors hover:border-primary hover:bg-surface-hover"
+              onClick={() => useDemo(acc)}
+              className="group flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-transparent px-2.5 py-2 text-left text-xs transition-all hover:border-border hover:bg-surface"
             >
-              <span className="text-foreground">{d.label}</span>
-              <span className="font-mono text-[11px] text-muted">demo123</span>
+              <span className="font-medium text-foreground transition-colors group-hover:text-primary-strong">
+                {acc.label}
+              </span>
+              <span className="font-mono text-muted-foreground">
+                {acc.email} / {acc.password}
+              </span>
             </button>
           ))}
         </div>
@@ -101,7 +131,10 @@ export default function Login() {
 
       <p className="mt-6 text-center text-sm text-muted-foreground">
         {t('auth.noAccount')}{' '}
-        <Link to="/register" className="font-medium text-primary-strong hover:underline">
+        <Link
+          to="/register"
+          className="cursor-pointer font-semibold text-primary-strong transition-colors hover:underline"
+        >
           {t('auth.registerLink')}
         </Link>
       </p>

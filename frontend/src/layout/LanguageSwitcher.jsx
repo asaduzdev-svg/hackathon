@@ -21,23 +21,24 @@ export default function LanguageSwitcher() {
         {lang}
       </button>
       {open && (
-        <div className="animate-scale-in absolute right-0 top-11 w-32 rounded-xl border border-border bg-surface p-1.5 shadow-pop">
-          {LANGS.map((code) => (
+        <div className="animate-scale-in absolute right-0 top-11 w-36 rounded-xl border border-border bg-surface p-1.5 shadow-pop">
+          {Object.values(LANGS).map((l) => (
             <button
-              key={code}
+              key={l.code}
               type="button"
               onClick={() => {
-                setLang(code)
+                setLang(l.code)
                 setOpen(false)
               }}
-              className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm uppercase transition-colors ${
-                lang === code
+              className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors ${
+                lang === l.code
                   ? 'bg-primary/15 font-medium text-primary-strong'
                   : 'text-foreground hover:bg-surface-hover'
               }`}
             >
-              {code}
-              {lang === code && <Check size={14} className="ml-auto" />}
+              <span className="text-base">{l.flag}</span>
+              {l.label}
+              {lang === l.code && <Check size={14} className="ml-auto" />}
             </button>
           ))}
         </div>

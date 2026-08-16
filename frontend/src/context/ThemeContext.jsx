@@ -18,7 +18,7 @@ function resolveTheme(theme) {
 const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
-  const [theme, setThemeState] = useState(() => storage.get('theme', 'system'))
+  const [theme, setThemeState] = useState(() => storage.get('theme', 'light'))
 
   useEffect(() => {
     const apply = () => {

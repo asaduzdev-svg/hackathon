@@ -1,6 +1,8 @@
 {
   "common": {
     "appName": "ServiceCore",
+    "appTagline": "Простая CRM для небольшого сервисного бизнеса",
+    "slogan": "Заказы и оплаты в одном месте",
     "search": "Поиск",
     "create": "Создать",
     "add": "Добавить",
@@ -12,7 +14,7 @@
     "confirm": "Подтвердить",
     "close": "Закрыть",
     "back": "Назад",
-    "viewAll": "Смотреть все",
+    "viewAll": "Показать все",
     "actions": "Действия",
     "loading": "Загрузка...",
     "retry": "Повторить",
@@ -52,7 +54,7 @@
     "history": "История",
     "details": "Подробнее",
     "noData": "Нет данных",
-    "reset": "Сброс",
+    "reset": "Сбросить",
     "language": "Язык",
     "appearance": "Оформление",
     "light": "Светлая",
@@ -60,24 +62,28 @@
     "system": "Системная",
     "unpaid": "Не оплачено",
     "sum": "сум",
-    "slogan": "Простая CRM для сервисных бизнесов"
+    "currency": "UZS",
+    "created": "Создано",
+    "updated": "Обновлено",
+    "device": "Устройство",
+    "description": "Описание"
   },
   "nav": {
-    "main": "ОСНОВНОЕ",
-    "business": "БИЗНЕС",
-    "system": "СИСТЕМА",
     "dashboard": "Панель",
     "orders": "Заказы",
-    "customers": "Клиенты",
-    "appointments": "Записи",
+    "cars": "Машины",
     "workers": "Мастера",
-    "payments": "Оплаты",
+    "admin": "Админы",
+    "customers": "Клиенты",
+    "payments": "Платежи",
     "inventory": "Склад",
-    "reports": "Отчёты",
+    "cars": "Машины",
+    "worker": "Панель мастера",
+    "consumer": "Мой кабинет",
     "settings": "Настройки"
   },
   "sidebar": {
-    "hint": "CRM для небольшой мастерской — заказы, клиенты и платежи в одном месте."
+    "hint": "CRM для небольшого сервиса — заказы, клиенты и оплаты в одном месте."
   },
   "roles": {
     "owner": "Владелец",
@@ -87,51 +93,61 @@
   "status": {
     "order": {
       "new": "Новый",
-      "waiting": "Ожидает",
       "diagnosing": "Диагностика",
       "repairing": "В ремонте",
-      "ready": "Готов",
+      "ready": "Готово",
       "completed": "Завершён",
-      "cancelled": "Отменён",
-      "no_show": "Не пришёл"
+      "cancelled": "Отменён"
     },
     "payment": {
-      "unpaid": "Не оплачено",
+      "unpaid": "Не оплачен",
       "partial": "Частично",
-      "paid": "Оплачено"
-    },
-    "appointment": {
-      "confirmed": "Подтверждено",
-      "waiting": "Ожидает",
-      "completed": "Завершено",
-      "cancelled": "Отменено",
-      "no_show": "Не пришёл"
+      "paid": "Оплачен"
     },
     "inventory": {
       "in_stock": "В наличии",
-      "low_stock": "Заканчивается",
+      "low_stock": "Мало",
       "out_of_stock": "Нет в наличии"
     }
   },
-  "deviceType": {
+  "paymentMethod": {
+    "cash": "Наличные",
+    "card": "Карта",
+    "transfer": "Перевод"
+  },
+  "carType": {
+    "sedan": "Седан",
+    "suv": "Внедорожник / Кроссовер",
+    "hatchback": "Хэтчбек",
+    "minivan": "Минивэн",
+    "pickup": "Пикап"
+  },
+  "devices": {
     "phone": "Телефон",
     "laptop": "Ноутбук",
-    "computer": "Компьютер",
     "tablet": "Планшет",
-    "macbook": "MacBook"
+    "computer": "Компьютер",
+    "printer": "Принтер",
+    "tv": "Телевизор",
+    "console": "Игровая приставка",
+    "other": "Другое"
   },
   "priority": {
     "low": "Низкий",
     "normal": "Обычный",
     "high": "Высокий",
-    "urgent": "Срочный"
+    "urgent": "Срочно"
   },
   "auth": {
     "title": "Вход в систему",
-    "subtitle": "Управляйте своей мастерской",
-    "email": "Email",
+    "subtitle": "Управляйте своим сервисом",
+    "headline": "Управляйте сервисом с ясностью.",
+    "headlineLine2": "Заказы, оплаты и клиенты — в одном простом месте.",
+    "description": "Клиенты, заказы, оплаты и склад в одном рабочем пространстве.",
+    "email": "Email или телефон",
     "password": "Пароль",
     "name": "Имя",
+    "phone": "Телефон",
     "submit": "Войти",
     "noAccount": "Нет аккаунта?",
     "registerLink": "Регистрация",
@@ -140,86 +156,76 @@
     "registerSubmit": "Зарегистрироваться",
     "haveAccount": "Уже есть аккаунт?",
     "loginLink": "Войти",
-    "demoTitle": "Демо-аккаунты",
-    "demoHint": "Нажмите для заполнения",
-    "demoOwner": "Владелец (Сардор)",
-    "demoWorker": "Мастер (Бекзод)",
-    "demoCustomer": "Клиент (Азизбек)",
     "invalidCredentials": "Неверный email или пароль",
-    "passwordShort": "Пароль должен быть не короче 6 символов"
+    "networkError": "Ошибка сети. Попробуйте снова.",
+    "passwordShort": "Пароль должен содержать минимум 6 символов"
   },
   "dashboard": {
     "greeting": {
-      "morning": "Доброе утро, {{name}} 👋",
-      "afternoon": "Добрый день, {{name}} 👋",
-      "evening": "Добрый вечер, {{name}} 👋"
+      "morning": "Доброе утро, {{name}}",
+      "afternoon": "Добрый день, {{name}}",
+      "evening": "Добрый вечер, {{name}}"
     },
-    "subtitle": "Что происходит в вашей мастерской сегодня?",
-    "kpi": {
-      "todayOrders": "Заказы сегодня",
-      "inRepair": "В ремонте",
-      "ready": "Готовы",
-      "todayRevenue": "Выручка сегодня",
-      "unpaid": "Задолженность",
-      "activeRepairs": "Активные ремонты",
-      "readyForPickup": "Готовы к выдаче"
-    },
+    "subtitle": "Что происходит в вашем бизнесе сегодня.",
     "delta": {
-      "up": "+{{value}} ко вчерашнему",
-      "down": "{{value}} ко вчерашнему",
-      "neutral": "Как вчера"
+      "up": "выросло на {{value}}",
+      "down": "упало на {{value}}",
+      "neutral": "Без изменений"
     },
-    "activity": "Активность за сегодня",
-    "activityEmpty": "Сегодня пока нет активности",
-    "activeOrders": "Активные заказы",
-    "appointments": "Записи на сегодня",
-    "inventoryAlerts": "Предупреждения склада",
-    "lowStockNote": "осталось {{count}}",
-    "revenueChart": "Выручка",
-    "range": {
-      "today": "Сегодня",
-      "7d": "7 дней",
-      "30d": "30 дней"
+    "kpi": {
+      "todayRevenue": "Выручка сегодня",
+      "todayOrders": "Заказы сегодня",
+      "activeOrders": "Активные заказы",
+      "activeRepairs": "Активные ремонты",
+      "readyForPickup": "Готово к выдаче",
+      "unpaid": "Долги"
     },
-    "viewAll": "Смотреть все",
-    "recentOrders": "Последние заказы"
+    "todaysWork": "Сегодняшняя работа",
+    "todaysWorkEmpty": "Сегодня активных заказов нет.",
+    "recentOrders": "Последние заказы",
+    "recentOrdersEmpty": "Заказов пока нет.",
+    "lowStock": "Заканчивающиеся товары",
+    "lowStockEmpty": "Склад в порядке.",
+    "lowStockNote": "{{count}} товаров заканчиваются",
+    "viewInventory": "Открыть склад",
+    "activity": "Последние действия",
+    "activityEmpty": "Действий пока нет",
+    "createOrderCta": "Новый заказ",
+    "createOrderHint": "Принять клиента или оформить новый ремонт"
   },
   "orders": {
     "title": "Заказы",
-    "subtitle": "Управление всеми заказами на ремонт",
+    "subtitle": "Управляйте всеми заказами на ремонт от приёмки до выдачи.",
     "create": {
       "title": "Создать заказ",
-      "subtitle": "Введите данные о ремонте",
+      "subtitle": "Введите информацию о заказе",
       "newCustomer": "Новый клиент",
       "existingCustomer": "Существующий клиент",
       "selectCustomer": "Выберите клиента",
       "customerName": "Имя клиента",
       "customerPhone": "Телефон клиента",
-      "customerTelegram": "Telegram (необязательно)",
       "deviceType": "Тип устройства",
       "brand": "Бренд",
       "model": "Модель",
-      "imei": "Серийный / IMEI",
+      "plate": "Гос. номер",
+      "year": "Год",
       "issue": "Проблема",
-      "issuePlaceholder": "Например: не работает экран",
-      "price": "Цена (сум)",
+      "issuePlaceholder": "Например: треснул экран",
+      "price": "Цена",
+      "initialPayment": "Начальная оплата",
       "priority": "Приоритет",
       "worker": "Мастер",
+      "day": "День",
+      "hour": "Час",
       "expectedDate": "Ожидаемая дата",
       "notes": "Заметки",
+      "submit": "Создать заказ",
       "success": "Заказ создан"
     },
-    "search": "Поиск по ID, клиенту, устройству или телефону...",
+    "search": "ID, клиент, телефон или устройство...",
     "filterStatus": "Статус",
     "filterWorker": "Мастер",
-    "filterPriority": "Приоритет",
-    "filterDate": "Дата",
-    "dateRange": {
-      "all": "За всё время",
-      "today": "Сегодня",
-      "week": "Последние 7 дней",
-      "month": "Последние 30 дней"
-    },
+    "filterAll": "Все",
     "col": {
       "id": "Заказ",
       "customer": "Клиент",
@@ -230,22 +236,20 @@
       "payment": "Оплата",
       "price": "Цена",
       "date": "Дата",
-      "action": ""
+      "remaining": "Остаток"
     },
     "open": "Открыть",
     "empty": "Заказов пока нет",
-    "emptyCta": "Создайте первый заказ, чтобы начать управлять мастерской.",
+    "emptyCta": "Создайте первый заказ и начните управлять бизнесом.",
     "detailTitle": "Заказ {{id}}",
     "section": {
       "customer": "Клиент",
-      "device": "Устройство",
-      "repair": "Ремонт",
+      "service": "Услуга",
+      "assignment": "Мастер",
       "payment": "Оплата",
-      "timeline": "История"
+      "timeline": "История статусов",
+      "activity": "Активность"
     },
-    "serial": "Серийный / IMEI",
-    "condition": "Состояние",
-    "diagnosis": "Диагностика",
     "expectedDate": "Ожидаемая дата",
     "createdAt": "Создан",
     "totalPrice": "Итого",
@@ -256,34 +260,36 @@
     "addPayment": "Добавить оплату",
     "addNote": "Добавить заметку",
     "contact": "Связаться",
+    "viewCustomer": "Открыть клиента",
     "cancelOrder": "Отменить заказ",
     "cancelOrderTitle": "Отменить заказ?",
-    "cancelOrderText": "Заказ будет отмечен как отменённый. История сохранится.",
+    "cancelOrderText": "Заказ будет помечен как отменённый. История сохранится.",
     "cancelReason": "Причина",
     "cancelReasons": {
-      "customer": "Клиент отменил",
+      "customer": "Отменено клиентом",
       "parts": "Нет запчастей",
       "no_show": "Клиент не пришёл",
       "other": "Другое"
     },
     "timeline": {
       "created": "Заказ создан",
-      "assigned": "Назначен мастеру {{worker}}",
-      "waiting": "Ожидает обработки",
+      "assigned": "Назначен {{worker}}",
       "diagnosis": "Начата диагностика",
       "repair": "Начат ремонт",
       "ready": "Готов к выдаче",
       "completed": "Завершён",
       "payment": "Получена оплата {{amount}}",
       "cancelled": "Отменён",
-      "no_show": "Клиент не пришёл"
+      "note": "Добавлена заметка"
     },
-    "notFound": "Заказ не найден"
+    "notFound": "Заказ не найден",
+    "notFoundHint": "Такого заказа не существует."
   },
   "customers": {
     "title": "Клиенты",
-    "subtitle": "Управление базой клиентов",
+    "subtitle": "Все клиенты и их история обслуживания в одном месте.",
     "create": "Добавить клиента",
+    "add": "Добавить клиента",
     "search": "Поиск по имени или телефону...",
     "col": {
       "name": "Имя",
@@ -293,87 +299,46 @@
       "lastVisit": "Последний визит",
       "status": "Статус"
     },
-    "active": "Активен",
-    "inactive": "Неактивен",
+    "active": "Активный",
+    "inactive": "Неактивный",
     "empty": "Клиентов пока нет",
     "emptyCta": "Добавьте первого клиента.",
-    "detail": {
-      "profile": "Профиль",
-      "orders": "История заказов",
-      "payments": "История оплат",
-      "notes": "Заметки",
-      "telegram": "Telegram"
-    },
-    "createTitle": "Добавить клиента",
-    "lastVisit": "Последний визит"
-  },
-  "workers": {
-    "title": "Мастера",
-    "subtitle": "Управление командой",
-    "add": "Добавить мастера",
-    "specialization": "Специализация",
-    "activeOrders": "Активные заказы",
-    "completedOrders": "Завершено",
-    "todayLoad": "Нагрузка сегодня",
-    "empty": "Мастеров пока нет",
-    "emptyCta": "Добавьте первого мастера.",
-    "createTitle": "Добавить мастера",
+    "createTitle": "Новый клиент",
     "createName": "Имя",
     "createPhone": "Телефон",
-    "createSpecialization": "Специализация",
-    "phoneRepair": "Ремонт телефонов",
-    "computerRepair": "Ремонт компьютеров",
-    "laptopRepair": "Ноутбуки / MacBook",
-    "tabletRepair": "Планшеты"
-  },
-  "appointments": {
-    "title": "Записи",
-    "subtitle": "Управление визитами клиентов",
-    "create": "Новая запись",
-    "tab": {
-      "today": "Сегодня",
-      "upcoming": "Предстоящие",
-      "all": "Все"
-    },
-    "markNoShow": "Не пришёл",
-    "noShowTitle": "Отметить как «не пришёл»?",
-    "noShowText": "Клиент не пришёл. Запись будет отмечена как «не пришёл» и учтена в отчётах.",
-    "markCompleted": "Завершить",
-    "confirm": "Подтвердить",
-    "cancel": "Отменить",
-    "empty": "Записей пока нет",
-    "emptyCta": "Создайте первую запись.",
-    "createTitle": "Новая запись",
-    "createDate": "Дата",
-    "createTime": "Время",
-    "createCustomer": "Клиент",
-    "createService": "Услуга",
-    "createWorker": "Мастер",
-    "servicePlaceholder": "Например: замена экрана iPhone 13"
+    "createNotes": "Заметка",
+    "lastVisit": "Последний визит",
+    "detail": {
+      "orders": "История заказов",
+      "stats": "Показатели",
+      "totalOrders": "Всего заказов",
+      "totalSpent": "Всего потрачено",
+      "outstanding": "Долг",
+      "createOrder": "Новый заказ",
+      "profile": "Профиль",
+      "payments": "Платежи",
+      "notes": "Заметки",
+      "telegram": "Telegram"
+    }
   },
   "payments": {
     "title": "Оплаты",
-    "subtitle": "Отслеживание всех платежей",
+    "subtitle": "Контролируйте поступления в ваш бизнес.",
     "card": {
       "todayRevenue": "Выручка сегодня",
       "collected": "Всего собрано",
-      "unpaid": "Задолженность",
-      "pending": "Ожидаемые платежи"
+      "partial": "Частичные оплаты",
+      "unpaid": "Долги",
+      "pending": "Ожидается"
     },
     "search": "Поиск по заказу или клиенту...",
     "col": {
-      "id": "ID платежа",
+      "id": "Оплата",
       "order": "Заказ",
       "customer": "Клиент",
       "amount": "Сумма",
       "method": "Способ",
-      "date": "Дата",
-      "status": "Статус"
-    },
-    "method": {
-      "cash": "Наличные",
-      "card": "Карта",
-      "transfer": "Перевод"
+      "date": "Дата"
     },
     "addPayment": "Добавить оплату",
     "add": {
@@ -381,159 +346,162 @@
       "order": "Заказ",
       "remaining": "Остаток",
       "amount": "Сумма",
-      "method": "Способ"
+      "method": "Способ",
+      "submit": "Сохранить"
     },
     "empty": "Оплат пока нет",
-    "debt": "Долг"
+    "emptyCta": "Здесь появятся все принятые оплаты."
   },
   "inventory": {
     "title": "Склад",
-    "subtitle": "Управление запасом запчастей",
+    "subtitle": "Знайте, какие запчасти и материалы у вас есть.",
     "add": "Добавить товар",
     "edit": "Изменить",
-    "search": "Поиск по названию товара...",
+    "search": "Поиск по названию...",
     "filterCategory": "Категория",
     "col": {
       "item": "Товар",
       "category": "Категория",
       "quantity": "Количество",
       "minimum": "Минимум",
-      "purchasePrice": "Закупка",
-      "sellingPrice": "Продажа",
+      "purchasePrice": "Цена закупа",
+      "sellingPrice": "Цена продажи",
       "status": "Статус"
     },
-    "addStock": "Пополнить",
-    "addStockTitle": "Пополнение склада",
+    "stockValue": "Стоимость запасов",
+    "addStock": "Добавить на склад",
+    "addStockTitle": "Добавить на склад",
     "addStockQty": "Количество",
     "addStockNote": "Заметка",
     "category": {
-      "screen": "Экран",
+      "filter": "Фильтр",
+      "oil": "Масло",
+      "brake": "Тормоза",
+      "suspension": "Подвеска",
+      "cooling": "Охлаждение",
+      "body": "Кузов",
       "battery": "Аккумулятор",
-      "port": "Разъём зарядки",
       "component": "Компонент",
       "accessory": "Аксессуар"
     },
-    "history": "История",
-    "historyEmpty": "История пуста",
     "empty": "Склад пуст",
     "emptyCta": "Добавьте первый товар.",
     "lowStock": "Заканчивается",
     "outOfStock": "Нет в наличии",
-    "stockValue": "Стоимость запаса"
-  },
-  "reports": {
-    "title": "Отчёты",
-    "subtitle": "Показатели мастерской",
-    "range": {
-      "today": "Сегодня",
-      "7d": "7 дней",
-      "30d": "30 дней"
+    "inStock": "В наличии",
+    "metrics": {
+      "total": "Всего товаров",
+      "lowStock": "Заканчивается",
+      "outOfStock": "Нет в наличии"
     },
-    "kpi": {
-      "revenue": "Выручка",
-      "orders": "Заказы",
-      "completed": "Завершено",
-      "cancelled": "Отменено",
-      "noShow": "Не пришли",
-      "avgOrder": "Средний заказ"
-    },
-    "revenueChart": "График выручки",
-    "workerPerformance": "Эффективность мастеров",
-    "workerCol": {
-      "worker": "Мастер",
-      "completed": "Завершено",
-      "revenue": "Выручка",
-      "avg": "Среднее"
-    },
-    "popularServices": "Популярные услуги",
-    "ordersCount": "{{count}} заказов",
-    "inventoryReport": "Отчёт по складу",
-    "stockValue": "Стоимость запаса",
-    "lowStockItems": "Заканчивающиеся",
-    "topItems": "Самые ценные товары",
-    "empty": "Нет данных для отчёта"
+    "createTitle": "Новый товар",
+    "createName": "Название",
+    "createCategory": "Категория",
+    "createQuantity": "Количество",
+    "createMinimum": "Минимум",
+    "createPurchasePrice": "Закупочная цена",
+    "createSellingPrice": "Цена продажи"
   },
   "settings": {
     "title": "Настройки",
-    "subtitle": "Настройки мастерской и системы",
+    "subtitle": "Аккаунт и параметры приложения.",
     "section": {
-      "business": "Бизнес",
       "profile": "Профиль",
-      "notifications": "Уведомления",
       "appearance": "Оформление",
       "language": "Язык",
-      "danger": "Опасная зона"
+      "account": "Аккаунт",
+      "telegram": "Telegram-бот"
     },
-    "business": {
-      "name": "Название мастерской",
-      "phone": "Телефон",
-      "address": "Адрес",
-      "hours": "Часы работы"
+    "telegram": {
+      "hint": "Напишите боту /start и получайте уведомления",
+      "notConfigured": "Бот не настроен",
+      "connected": "Подключено",
+      "subscribers": "подписанных чатов",
+      "notify": "Отправлять уведомления в Telegram",
+      "openBot": "Открыть бота",
+      "test": "Тестовое сообщение",
+      "testSent": "Тестовое сообщение отправлено",
+      "testFailed": "Нет подключённых чатов. Напишите боту /start"
     },
     "profile": {
       "name": "Имя",
-      "phone": "Телефон",
-      "email": "Email"
+      "email": "Email",
+      "phone": "Телефон"
     },
-    "notif": {
-      "customer": "Уведомления клиентам",
-      "customerHint": "Уведомлять клиентов при изменении статуса заказа",
-      "appointments": "Напоминания о записи",
-      "appointmentsHint": "Отправлять напоминания перед записью",
-      "telegram": "Telegram-уведомления",
-      "telegramHint": "Telegram-бот будет подключён на этапе бэкенда."
-    },
-    "appearanceHint": "Выберите оформление приложения",
+    "appearanceHint": "Выберите оформление",
     "languageHint": "Выберите язык интерфейса",
-    "danger": {
-      "reset": "Сбросить демо-данные",
-      "resetHint": "Все данные будут возвращены в исходное состояние",
-      "resetConfirm": "Сбросить все демо-данные?"
-    },
-    "saved": "Настройки сохранены"
+    "accountHint": "Выйти из аккаунта",
+    "saved": "Сохранено"
+  },
+  "globalSearch": {
+    "placeholder": "Поиск клиента или заказа...",
+    "empty": "Ничего не найдено",
+    "hint": "Введите ID или имя клиента",
+    "orderResult": "Заказ",
+    "customerResult": "Клиент"
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "markAllRead": "Отметить все как прочитанные",
+    "none": "Нет уведомлений"
+  },
+  "worker": {
+    "title": "Панель мастера — {{name}}",
+    "subtitle": "Заказы, назначенные вам, и их статусы.",
+    "myOrders": "Мои заказы",
+    "activeOrders": "Активные заказы",
+    "completedOrders": "Завершённые",
+    "earned": "Заработано",
+    "notLinked": "Телефон профиля не совпадает ни с одним мастером. Свяжитесь с администратором.",
+    "noOrders": "Вам ещё не назначены заказы",
+    "noOrdersCta": "Новые заказы появятся здесь после назначения.",
+    "allOrders": "Все заказы"
+  },
+  "consumer": {
+    "title": "Мой кабинет — {{name}}",
+    "subtitle": "Ваши заказы и история платежей.",
+    "myOrders": "Мои заказы",
+    "activeOrders": "Активные заказы",
+    "totalSpent": "Всего оплачено",
+    "telegram": "Telegram",
+    "paymentHistory": "История платежей",
+    "noPayments": "Платежей пока нет",
+    "noOrders": "У вас пока нет заказов",
+    "noOrdersCta": "Заказы появятся здесь после создания."
   },
   "toasts": {
     "orderCreated": "Заказ создан",
     "orderUpdated": "Статус обновлён",
     "paymentAdded": "Оплата записана",
-    "customerCreated": "Клиент создан",
-    "workerCreated": "Мастер добавлен",
+    "customerCreated": "Клиент добавлен",
+    "inventoryCreated": "Товар добавлен",
     "inventoryUpdated": "Склад обновлён",
-    "stockAdded": "Запас пополнен",
-    "appointmentCreated": "Запись создана",
-    "appointmentUpdated": "Запись обновлена",
-    "noShowMarked": "Отмечено как «не пришёл»",
+    "stockAdded": "Запас добавлен",
+    "workerAssigned": "Мастер назначен",
     "orderCancelled": "Заказ отменён",
     "settingsSaved": "Настройки сохранены",
-    "dataReset": "Демо-данные сброшены",
-    "noteAdded": "Заметка добавлена",
     "loggedIn": "Добро пожаловать",
     "loggedOut": "Вы вышли из системы",
-    "registered": "Аккаунт создан"
+    "registered": "Аккаунт создан",
+    "error": "Произошла ошибка",
+    "networkError": "Ошибка сети"
   },
   "error": {
     "title": "Что-то пошло не так",
-    "subtitle": "Не удалось загрузить эти данные.",
-    "retry": "Повторить"
-  },
-  "notifications": {
-    "title": "Уведомления",
-    "markAllRead": "Отметить все как прочитанные",
-    "none": "Уведомлений пока нет",
-    "orderCreated": "Новый заказ {{id}} — {{customer}}",
-    "orderStatus": "Заказ {{id}}: {{status}}",
-    "payment": "Оплата {{amount}} получена за {{id}}",
-    "appointmentReminder": "Запись завтра в {{time}} — {{customer}}",
-    "noShow": "{{customer}} отмечен как «не пришёл»",
-    "markedRead": "Все уведомления отмечены как прочитанные"
+    "subtitle": "Не удалось загрузить данные.",
+    "retry": "Повторить",
+    "notFoundTitle": "Не найдено",
+    "notFoundHint": "Такой страницы не существует."
   },
   "validation": {
-    "required": "Обязательное поле",
+    "required": "Это поле обязательно",
     "email": "Введите корректный email",
-    "phone": "Введите корректный номер телефона",
+    "phone": "Введите корректный телефон",
     "price": "Введите корректную сумму",
-    "selectCustomer": "Выберите клиента",
     "positive": "Значение должно быть положительным",
-    "amountMax": "Сумма не должна превышать остаток"
+    "selectCustomer": "Выберите клиента",
+    "selectWorker": "Выберите мастера",
+    "amountMax": "Сумма не может превышать остаток",
+    "minLength": "Минимум {{count}} символов"
   }
 }

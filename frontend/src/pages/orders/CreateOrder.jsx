@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Plus } from 'lucide-react'
 import { useOrders } from '../../hooks/useOrders.js'
 import { useCustomers } from '../../hooks/useCustomers.js'
+import { useApp } from '../../context/AppContext.jsx'
 import { useI18n } from '../../i18n/index.jsx'
 import { useToast } from '../../context/ToastContext.jsx'
 import { DEVICE_TYPES, DEVICE_TYPE_LABEL_KEY, DEVICE_BRANDS } from '../../constants/deviceTypes.js'
@@ -19,6 +20,7 @@ export default function CreateOrder() {
   const { t } = useI18n()
   const { createOrder, addPayment } = useOrders()
   const { customers, createCustomer } = useCustomers()
+  const { workers } = useApp()
   const toast = useToast()
   const navigate = useNavigate()
 
@@ -27,19 +29,28 @@ export default function CreateOrder() {
     customerId: '',
     customerName: '',
     phone: '',
-    deviceType: 'phone',
+    deviceType: 'sedan',
     brand: '',
     model: '',
+    year: '',
+    plate: '',
     issue: '',
     price: '',
     paid: '',
     priority: 'normal',
+    workerId: '',
+    expectedDate: '',
     notes: '',
   })
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
 
   const brands = DEVICE_BRANDS[form.deviceType] || []
+  const workerOptions = useMemo(
+    () => workers.map((w) => ({ value: w.id, label: w.name })),
+    [workers],
+  )
+  const TIME_OPTIONS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']
   const customerOptions = useMemo(
     () => customers.map((c) => ({ value: c.id, label: `${c.name} — ${c.phone}` })),
     [customers],
@@ -80,11 +91,15 @@ export default function CreateOrder() {
         customerId,
         customerName,
         phone,
-        deviceType: form.deviceType,
-        brand: form.brand,
+        carType: form.deviceType,
+        make: form.brand,
         model: form.model,
+        year: Number(form.year) || null,
+        plate: form.plate,
         issue: form.issue,
         priority: form.priority,
+        workerId: form.workerId || null,
+        expectedDate: form.expectedDate ? new Date(form.expectedDate).toISOString() : null,
         price: Number(form.price) || 0,
         notes: form.notes,
       })
@@ -155,7 +170,9 @@ export default function CreateOrder() {
               options={brands.map((b) => ({ value: b, label: b }))}
               placeholder={t('orders.create.brand')}
             />
-            <Input label={t('orders.create.model')} value={form.model} onChange={set('model')} placeholder="iPhone 13" />
+            <Input label={t('orders.create.model')} value={form.model} onChange={set('model')} placeholder="Captiva" />
+            <Input label={t('orders.create.plate')} value={form.plate} onChange={set('plate')} placeholder="01 A 123 BC" />
+            <Input label={t('orders.create.year')} type="number" min="1980" max="2026" value={form.year} onChange={set('year')} placeholder="2018" />
             <Textarea
               label={t('orders.create.issue')}
               required

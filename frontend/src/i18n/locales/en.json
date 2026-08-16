@@ -1,6 +1,8 @@
 {
   "common": {
     "appName": "ServiceCore",
+    "appTagline": "A simple CRM for small service businesses",
+    "slogan": "Orders and payments in one place",
     "search": "Search",
     "create": "Create",
     "add": "Add",
@@ -15,7 +17,7 @@
     "viewAll": "View all",
     "actions": "Actions",
     "loading": "Loading...",
-    "retry": "Try again",
+    "retry": "Retry",
     "today": "Today",
     "yesterday": "Yesterday",
     "all": "All",
@@ -36,7 +38,7 @@
     "name": "Name",
     "email": "Email",
     "address": "Address",
-    "logout": "Log out",
+    "logout": "Sign out",
     "profile": "Profile",
     "quantity": "Quantity",
     "minimum": "Minimum",
@@ -59,25 +61,30 @@
     "dark": "Dark",
     "system": "System",
     "unpaid": "Unpaid",
-    "sum": "so'm",
-    "slogan": "Simple CRM for service businesses"
+    "sum": "sum",
+    "currency": "UZS",
+    "created": "Created",
+    "updated": "Updated",
+    "device": "Device",
+    "description": "Description"
   },
   "nav": {
-    "main": "MAIN",
-    "business": "BUSINESS",
-    "system": "SYSTEM",
     "dashboard": "Dashboard",
     "orders": "Orders",
-    "customers": "Customers",
-    "appointments": "Appointments",
+    "cars": "Cars",
+    "admin": "Admins",
     "workers": "Workers",
+    "customers": "Customers",
     "payments": "Payments",
     "inventory": "Inventory",
-    "reports": "Reports",
-    "settings": "Settings"
+    "worker": "Worker panel",
+    "consumer": "My cabinet",
+    "settings": "Settings",
+    "groupMain": "Main",
+    "groupGeneral": "General"
   },
   "sidebar": {
-    "hint": "A CRM for a small repair shop — orders, customers and payments in one place."
+    "hint": "A simple CRM for small service businesses — orders, customers and payments together."
   },
   "roles": {
     "owner": "Owner",
@@ -87,25 +94,16 @@
   "status": {
     "order": {
       "new": "New",
-      "waiting": "Waiting",
       "diagnosing": "Diagnosing",
       "repairing": "Repairing",
       "ready": "Ready",
       "completed": "Completed",
-      "cancelled": "Cancelled",
-      "no_show": "No show"
+      "cancelled": "Cancelled"
     },
     "payment": {
       "unpaid": "Unpaid",
       "partial": "Partial",
       "paid": "Paid"
-    },
-    "appointment": {
-      "confirmed": "Confirmed",
-      "waiting": "Waiting",
-      "completed": "Completed",
-      "cancelled": "Cancelled",
-      "no_show": "No show"
     },
     "inventory": {
       "in_stock": "In stock",
@@ -113,12 +111,27 @@
       "out_of_stock": "Out of stock"
     }
   },
-  "deviceType": {
+  "paymentMethod": {
+    "cash": "Cash",
+    "card": "Card",
+    "transfer": "Transfer"
+  },
+  "carType": {
+    "sedan": "Sedan",
+    "suv": "SUV / Crossover",
+    "hatchback": "Hatchback",
+    "minivan": "Minivan",
+    "pickup": "Pickup"
+  },
+  "devices": {
     "phone": "Phone",
     "laptop": "Laptop",
-    "computer": "Computer",
     "tablet": "Tablet",
-    "macbook": "MacBook"
+    "computer": "Computer",
+    "printer": "Printer",
+    "tv": "TV",
+    "console": "Console",
+    "other": "Other"
   },
   "priority": {
     "low": "Low",
@@ -128,98 +141,93 @@
   },
   "auth": {
     "title": "Sign in",
-    "subtitle": "Manage your repair workshop",
-    "email": "Email",
+    "subtitle": "Run your service business with clarity",
+    "headline": "Run your service business with clarity.",
+    "headlineLine2": "Orders, payments and customers — in one simple place.",
+    "description": "Manage customers, orders, payments and inventory from one simple workspace.",
+    "email": "Email or phone",
     "password": "Password",
     "name": "Name",
+    "phone": "Phone",
     "submit": "Sign in",
     "noAccount": "Don't have an account?",
-    "registerLink": "Create account",
-    "registerTitle": "Create account",
-    "registerSubtitle": "Start managing your workshop",
-    "registerSubmit": "Register",
+    "registerLink": "Sign up",
+    "registerTitle": "Sign up",
+    "registerSubtitle": "Create a new account",
+    "registerSubmit": "Sign up",
     "haveAccount": "Already have an account?",
     "loginLink": "Sign in",
-    "demoTitle": "Demo accounts",
-    "demoHint": "Click to fill in credentials",
-    "demoOwner": "Owner (Sardor)",
-    "demoWorker": "Worker (Bekzod)",
-    "demoCustomer": "Customer (Azizbek)",
-    "invalidCredentials": "Incorrect email or password",
+    "invalidCredentials": "Invalid email or password",
+    "networkError": "Network error. Please try again.",
     "passwordShort": "Password must be at least 6 characters"
   },
   "dashboard": {
     "greeting": {
-      "morning": "Good morning, {{name}} 👋",
-      "afternoon": "Good afternoon, {{name}} 👋",
-      "evening": "Good evening, {{name}} 👋"
+      "morning": "Good morning, {{name}}",
+      "afternoon": "Good afternoon, {{name}}",
+      "evening": "Good evening, {{name}}"
     },
-    "subtitle": "What's happening in your workshop today?",
-    "kpi": {
-      "todayOrders": "Today's orders",
-      "inRepair": "In repair",
-      "ready": "Ready",
-      "todayRevenue": "Today's revenue",
-      "unpaid": "Unpaid balance",
-      "activeRepairs": "Active repairs",
-      "readyForPickup": "Ready for pickup"
-    },
+    "subtitle": "Here's what's happening in your business today.",
     "delta": {
-      "up": "+{{value}} vs yesterday",
-      "down": "{{value}} vs yesterday",
-      "neutral": "Same as yesterday"
+      "up": "up {{value}}",
+      "down": "down {{value}}",
+      "neutral": "No change"
     },
-    "activity": "Today's activity",
-    "activityEmpty": "No activity yet today",
-    "activeOrders": "Active orders",
-    "appointments": "Today's appointments",
-    "inventoryAlerts": "Inventory alerts",
-    "lowStockNote": "{{count}} left",
-    "revenueChart": "Revenue",
-    "range": {
-      "today": "Today",
-      "7d": "7 days",
-      "30d": "30 days"
+    "kpi": {
+      "todayRevenue": "Today's revenue",
+      "todayOrders": "Today's orders",
+      "activeOrders": "Active orders",
+      "activeRepairs": "Active repairs",
+      "readyForPickup": "Ready for pickup",
+      "unpaid": "Outstanding"
     },
-    "viewAll": "View all",
-    "recentOrders": "Recent orders"
+    "todaysWork": "Today's work",
+    "todaysWorkEmpty": "No active orders today.",
+    "recentOrders": "Recent orders",
+    "recentOrdersEmpty": "No orders yet.",
+    "lowStock": "Low stock items",
+    "lowStockEmpty": "Inventory looks healthy.",
+    "lowStockNote": "{{count}} items running low",
+    "viewInventory": "View inventory",
+    "activity": "Recent activity",
+    "activityEmpty": "No activity yet",
+    "createOrderCta": "New order",
+    "createOrderHint": "Receive a customer or start a new repair",
+    "viewAll": "View all"
   },
   "orders": {
     "title": "Orders",
-    "subtitle": "Manage all repair orders",
+    "subtitle": "Manage every service order from intake to completion.",
     "create": {
       "title": "Create order",
-      "subtitle": "Fill in the repair details",
+      "subtitle": "Fill in the service order details",
       "newCustomer": "New customer",
       "existingCustomer": "Existing customer",
-      "selectCustomer": "Select customer",
+      "selectCustomer": "Select a customer",
       "customerName": "Customer name",
       "customerPhone": "Customer phone",
-      "customerTelegram": "Telegram (optional)",
       "deviceType": "Device type",
       "brand": "Brand",
       "model": "Model",
-      "imei": "Serial / IMEI",
+      "plate": "License plate",
+      "year": "Year",
       "issue": "Issue",
-      "issuePlaceholder": "e.g. Screen is not working",
-      "price": "Price (so'm)",
+      "issuePlaceholder": "e.g. cracked screen",
+      "price": "Price",
+      "initialPayment": "Initial payment",
       "priority": "Priority",
       "worker": "Worker",
+      "day": "Day",
+      "hour": "Hour",
       "expectedDate": "Expected date",
       "notes": "Notes",
+      "submit": "Create order",
       "success": "Order created"
     },
-    "search": "Search by ID, customer, device or phone...",
+    "search": "ID, customer, phone or device...",
     "filterStatus": "Status",
     "filterWorker": "Worker",
-    "filterPriority": "Priority",
-    "filterDate": "Date",
-    "dateRange": {
-      "all": "All time",
-      "today": "Today",
-      "week": "Last 7 days",
-      "month": "Last 30 days"
-    },
+    "filterAll": "All",
     "col": {
       "id": "Order",
       "customer": "Customer",
@@ -230,22 +238,20 @@
       "payment": "Payment",
       "price": "Price",
       "date": "Date",
-      "action": ""
+      "remaining": "Remaining"
     },
     "open": "Open",
     "empty": "No orders yet",
-    "emptyCta": "Create your first repair order to start managing your workshop.",
+    "emptyCta": "Create your first order to start running your business.",
     "detailTitle": "Order {{id}}",
     "section": {
       "customer": "Customer",
-      "device": "Device",
-      "repair": "Repair",
+      "service": "Service",
+      "assignment": "Worker",
       "payment": "Payment",
-      "timeline": "Timeline"
+      "timeline": "Status timeline",
+      "activity": "Activity"
     },
-    "serial": "Serial / IMEI",
-    "condition": "Condition",
-    "diagnosis": "Diagnosis",
     "expectedDate": "Expected date",
     "createdAt": "Created",
     "totalPrice": "Total",
@@ -256,34 +262,36 @@
     "addPayment": "Add payment",
     "addNote": "Add note",
     "contact": "Contact",
+    "viewCustomer": "View customer",
     "cancelOrder": "Cancel order",
-    "cancelOrderTitle": "Cancel order?",
-    "cancelOrderText": "The order will be marked as cancelled. History will be preserved.",
+    "cancelOrderTitle": "Cancel this order?",
+    "cancelOrderText": "Order will be marked as cancelled. History is kept.",
     "cancelReason": "Reason",
     "cancelReasons": {
-      "customer": "Customer cancelled",
+      "customer": "Cancelled by customer",
       "parts": "Parts unavailable",
-      "no_show": "Customer no-show",
+      "no_show": "Customer didn't show up",
       "other": "Other"
     },
     "timeline": {
       "created": "Order created",
       "assigned": "Assigned to {{worker}}",
-      "waiting": "Queued for processing",
       "diagnosis": "Diagnosis started",
       "repair": "Repair started",
       "ready": "Ready for pickup",
       "completed": "Completed",
       "payment": "Payment of {{amount}} received",
       "cancelled": "Cancelled",
-      "no_show": "Customer did not show"
+      "note": "Note added"
     },
-    "notFound": "Order not found"
+    "notFound": "Order not found",
+    "notFoundHint": "This order does not exist."
   },
   "customers": {
     "title": "Customers",
-    "subtitle": "Manage your customer base",
-    "create": "Create customer",
+    "subtitle": "Keep every customer and their service history in one place.",
+    "create": "Add customer",
+    "add": "Add customer",
     "search": "Search by name or phone...",
     "col": {
       "name": "Name",
@@ -296,84 +304,43 @@
     "active": "Active",
     "inactive": "Inactive",
     "empty": "No customers yet",
-    "emptyCta": "Create your first customer.",
-    "detail": {
-      "profile": "Profile",
-      "orders": "Order history",
-      "payments": "Payment history",
-      "notes": "Notes",
-      "telegram": "Telegram"
-    },
-    "createTitle": "Create customer",
-    "lastVisit": "Last visit"
-  },
-  "workers": {
-    "title": "Workers",
-    "subtitle": "Manage your team",
-    "add": "Add worker",
-    "specialization": "Specialization",
-    "activeOrders": "Active orders",
-    "completedOrders": "Completed",
-    "todayLoad": "Today's load",
-    "empty": "No workers yet",
-    "emptyCta": "Add your first worker.",
-    "createTitle": "Add worker",
+    "emptyCta": "Add your first customer.",
+    "createTitle": "New customer",
     "createName": "Name",
     "createPhone": "Phone",
-    "createSpecialization": "Specialization",
-    "phoneRepair": "Phone repair",
-    "computerRepair": "Computer repair",
-    "laptopRepair": "Laptop / MacBook",
-    "tabletRepair": "Tablet"
-  },
-  "appointments": {
-    "title": "Appointments",
-    "subtitle": "Manage customer visits",
-    "create": "New appointment",
-    "tab": {
-      "today": "Today",
-      "upcoming": "Upcoming",
-      "all": "All"
-    },
-    "markNoShow": "Mark as no-show",
-    "noShowTitle": "Mark as no-show?",
-    "noShowText": "The customer did not arrive. This appointment will be marked as no-show and recorded in reports.",
-    "markCompleted": "Completed",
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    "empty": "No appointments yet",
-    "emptyCta": "Create your first appointment.",
-    "createTitle": "New appointment",
-    "createDate": "Date",
-    "createTime": "Time",
-    "createCustomer": "Customer",
-    "createService": "Service",
-    "createWorker": "Worker",
-    "servicePlaceholder": "e.g. iPhone 13 screen replacement"
+    "createNotes": "Notes",
+    "lastVisit": "Last visit",
+    "detail": {
+      "orders": "Order history",
+      "stats": "Stats",
+      "totalOrders": "Total orders",
+      "totalSpent": "Total spent",
+      "outstanding": "Outstanding",
+      "createOrder": "New order",
+      "profile": "Profile",
+      "payments": "Payments",
+      "notes": "Notes",
+      "telegram": "Telegram"
+    }
   },
   "payments": {
     "title": "Payments",
-    "subtitle": "Track all payments",
+    "subtitle": "Track every payment coming into your business.",
     "card": {
       "todayRevenue": "Today's revenue",
       "collected": "Total collected",
-      "unpaid": "Unpaid balance",
-      "pending": "Pending payments"
+      "partial": "Partial payments",
+      "unpaid": "Outstanding",
+      "pending": "Pending"
     },
     "search": "Search by order or customer...",
     "col": {
-      "id": "Payment ID",
+      "id": "Payment",
       "order": "Order",
       "customer": "Customer",
       "amount": "Amount",
       "method": "Method",
-      "date": "Date",
-      "status": "Status"
-    },
-    "method": {
-      "cash": "Cash",
-      "card": "Card",
-      "transfer": "Transfer"
+      "date": "Date"
     },
     "addPayment": "Add payment",
     "add": {
@@ -381,14 +348,15 @@
       "order": "Order",
       "remaining": "Remaining",
       "amount": "Amount",
-      "method": "Method"
+      "method": "Method",
+      "submit": "Save"
     },
     "empty": "No payments yet",
-    "debt": "Debt"
+    "emptyCta": "All received payments will show up here."
   },
   "inventory": {
     "title": "Inventory",
-    "subtitle": "Manage spare parts stock",
+    "subtitle": "Know what parts and supplies you have.",
     "add": "Add item",
     "edit": "Edit",
     "search": "Search by item name...",
@@ -402,138 +370,215 @@
       "sellingPrice": "Selling price",
       "status": "Status"
     },
+    "stockValue": "Stock value",
     "addStock": "Add stock",
     "addStockTitle": "Add stock",
     "addStockQty": "Quantity to add",
     "addStockNote": "Note",
     "category": {
-      "screen": "Screen",
+      "filter": "Filter",
+      "oil": "Oil",
+      "brake": "Brake",
+      "suspension": "Suspension",
+      "cooling": "Cooling",
+      "body": "Body",
       "battery": "Battery",
-      "port": "Charging port",
       "component": "Component",
       "accessory": "Accessory"
     },
-    "history": "History",
-    "historyEmpty": "History is empty",
     "empty": "Inventory is empty",
     "emptyCta": "Add your first item.",
     "lowStock": "Low stock",
     "outOfStock": "Out of stock",
-    "stockValue": "Stock value"
-  },
-  "reports": {
-    "title": "Reports",
-    "subtitle": "Workshop performance",
-    "range": {
-      "today": "Today",
-      "7d": "7 days",
-      "30d": "30 days"
+    "inStock": "In stock",
+    "metrics": {
+      "total": "Total items",
+      "lowStock": "Low stock",
+      "outOfStock": "Out of stock"
     },
-    "kpi": {
-      "revenue": "Revenue",
-      "orders": "Orders",
-      "completed": "Completed",
-      "cancelled": "Cancelled",
-      "noShow": "No-show",
-      "avgOrder": "Avg order"
-    },
-    "revenueChart": "Revenue chart",
-    "workerPerformance": "Worker performance",
-    "workerCol": {
-      "worker": "Worker",
-      "completed": "Completed",
-      "revenue": "Revenue",
-      "avg": "Avg"
-    },
-    "popularServices": "Popular services",
-    "ordersCount": "{{count}} orders",
-    "inventoryReport": "Inventory report",
-    "stockValue": "Stock value",
-    "lowStockItems": "Low stock items",
-    "topItems": "Most valuable items",
-    "empty": "No data for this report"
+    "createTitle": "New item",
+    "createName": "Name",
+    "createCategory": "Category",
+    "createQuantity": "Quantity",
+    "createMinimum": "Minimum",
+    "createPurchasePrice": "Purchase price",
+    "createSellingPrice": "Selling price"
   },
   "settings": {
     "title": "Settings",
-    "subtitle": "Workshop and system settings",
+    "subtitle": "Account and app preferences.",
     "section": {
-      "business": "Business",
       "profile": "Profile",
-      "notifications": "Notifications",
       "appearance": "Appearance",
       "language": "Language",
-      "danger": "Danger zone"
+      "account": "Account",
+      "telegram": "Telegram bot"
     },
-    "business": {
-      "name": "Workshop name",
-      "phone": "Phone",
-      "address": "Address",
-      "hours": "Working hours"
+    "telegram": {
+      "hint": "Send /start to the bot to receive notifications",
+      "notConfigured": "Bot not configured",
+      "connected": "Connected",
+      "subscribers": "subscribed chats",
+      "notify": "Send notifications to Telegram",
+      "openBot": "Open bot",
+      "test": "Test message",
+      "testSent": "Test message sent",
+      "testFailed": "No connected chats. Send /start to the bot"
     },
     "profile": {
       "name": "Name",
-      "phone": "Phone",
-      "email": "Email"
-    },
-    "notif": {
-      "customer": "Customer notifications",
-      "customerHint": "Notify customers when order status changes",
-      "appointments": "Appointment reminders",
-      "appointmentsHint": "Send reminders before appointments",
-      "telegram": "Telegram notifications",
-      "telegramHint": "The Telegram bot will be connected in the backend phase."
+      "email": "Email",
+      "phone": "Phone"
     },
     "appearanceHint": "Choose how the app looks",
     "languageHint": "Choose the interface language",
-    "danger": {
-      "reset": "Reset demo data",
-      "resetHint": "All data will be restored to the initial state",
-      "resetConfirm": "Reset all demo data?"
+    "accountHint": "Sign out of your account",
+    "saved": "Saved"
+  },
+  "globalSearch": {
+    "placeholder": "Search customer or order...",
+    "empty": "No results",
+    "hint": "Type a customer name or order ID",
+    "orderResult": "Order",
+    "customerResult": "Customer"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "none": "No notifications"
+  },
+  "worker": {
+    "title": "Worker panel — {{name}}",
+    "subtitle": "Orders assigned to you and their status.",
+    "myOrders": "My orders",
+    "activeOrders": "Active orders",
+    "completedOrders": "Completed",
+    "earned": "Earned",
+    "notLinked": "Profile phone doesn't match any worker. Contact the administrator.",
+    "noOrders": "No orders assigned to you yet",
+    "noOrdersCta": "New orders will appear here once assigned.",
+    "allOrders": "View all orders"
+  },
+  "consumer": {
+    "title": "My cabinet — {{name}}",
+    "subtitle": "Your orders and payment history.",
+    "myOrders": "My orders",
+    "activeOrders": "Active orders",
+    "totalSpent": "Total paid",
+    "addCar": "Add a car",
+    "addCarCta": "Add your car for service",
+    "telegram": "Telegram",
+    "paymentHistory": "Payment history",
+    "noPayments": "No payments yet",
+    "noOrders": "You have no orders yet",
+    "noOrdersCta": "Orders will appear here once created."
+  },
+  "cars": {
+    "title": "Cars",
+    "subtitle": "All vehicles in one list.",
+    "search": "Search cars...",
+    "stat": {
+      "total": "Total cars",
+      "inService": "In service",
+      "completed": "Completed"
     },
-    "saved": "Settings saved"
+    "col": {
+      "car": "Vehicle",
+      "customer": "Customer",
+      "status": "Status",
+      "visits": "Visits",
+      "completed": "Completed",
+      "spent": "Total paid",
+      "lastVisit": "Last visit"
+    },
+    "empty": "No cars found",
+    "emptyCta": "Cars will appear here once orders are created.",
+    "totalSpent": "Total: {{total}}"
+  },
+  "workers": {
+    "title": "Workers",
+    "subtitle": "Staff and their performance.",
+    "create": "Add worker",
+    "createTitle": "New worker",
+    "editTitle": "Edit worker",
+    "search": "Search workers...",
+    "stat": {
+      "total": "Total workers",
+      "active": "Active orders",
+      "completed": "Completed jobs"
+    },
+    "col": {
+      "worker": "Worker",
+      "spec": "Specialization",
+      "rating": "Rating",
+      "active": "Active",
+      "completed": "Done",
+      "joined": "Joined"
+    },
+    "empty": "No workers found",
+    "emptyCta": "Add your first worker.",
+    "placeholders": {
+      "name": "Full name"
+    },
+    "spec": {
+      "mechanic": "Mechanic",
+      "electrician": "Electrician",
+      "diagnostician": "Diagnostician",
+      "painter": "Painter",
+      "tire": "Tire service",
+      "body repair": "Body repair"
+    }
+  },
+  "ai": {
+    "title": "AI assistant",
+    "subtitle": "Advice on orders, parts and repairs",
+    "placeholder": "Type your question...",
+    "send": "Send",
+    "greeting": "Hi! I'm your AI assistant. Ask me about orders, car issues or spare parts.",
+    "poweredBy": "Groq AI",
+    "thinking": "Thinking...",
+    "error": "Something went wrong. Try again.",
+    "quick": {
+      "parts": "What parts will be needed?",
+      "diagnose": "Car vibration causes",
+      "tip": "Give business advice"
+    }
   },
   "toasts": {
     "orderCreated": "Order created",
     "orderUpdated": "Status updated",
     "paymentAdded": "Payment recorded",
-    "customerCreated": "Customer created",
-    "workerCreated": "Worker added",
+    "customerCreated": "Customer added",
+    "inventoryCreated": "Item added",
     "inventoryUpdated": "Inventory updated",
     "stockAdded": "Stock added",
-    "appointmentCreated": "Appointment created",
-    "appointmentUpdated": "Appointment updated",
-    "noShowMarked": "Marked as no-show",
+    "workerAssigned": "Worker assigned",
     "orderCancelled": "Order cancelled",
     "settingsSaved": "Settings saved",
-    "dataReset": "Demo data reset",
-    "noteAdded": "Note added",
     "loggedIn": "Welcome back",
-    "loggedOut": "Logged out",
-    "registered": "Account created"
+    "loggedOut": "Signed out",
+    "registered": "Account created",
+    "created": "Created successfully",
+    "updated": "Updated successfully",
+    "error": "Something went wrong",
+    "networkError": "Network error"
   },
   "error": {
     "title": "Something went wrong",
-    "subtitle": "We couldn't load this data.",
-    "retry": "Try again"
-  },
-  "notifications": {
-    "title": "Notifications",
-    "markAllRead": "Mark all as read",
-    "none": "No notifications yet",
-    "orderCreated": "New order {{id}} — {{customer}}",
-    "orderStatus": "Order {{id}} is now {{status}}",
-    "payment": "Payment of {{amount}} received for {{id}}",
-    "appointmentReminder": "Appointment tomorrow at {{time}} — {{customer}}",
-    "noShow": "{{customer}} marked as no-show",
-    "markedRead": "All notifications marked as read"
+    "subtitle": "Could not load this data.",
+    "retry": "Retry",
+    "notFoundTitle": "Not found",
+    "notFoundHint": "This page does not exist."
   },
   "validation": {
     "required": "This field is required",
     "email": "Enter a valid email",
     "phone": "Enter a valid phone number",
     "price": "Enter a valid amount",
-    "selectCustomer": "Select a customer",
     "positive": "Value must be positive",
-    "amountMax": "Amount must not exceed the remaining balance"
+    "selectCustomer": "Select a customer",
+    "selectWorker": "Select a worker",
+    "amountMax": "Amount cannot exceed remaining",
+    "minLength": "Minimum {{count}} characters"
   }
 }

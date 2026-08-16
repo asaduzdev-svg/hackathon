@@ -123,7 +123,7 @@ export default function CustomerDetail() {
                   <Wrench size={14} className="text-muted-foreground" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-foreground">{o.id} · {o.brand} {o.model}</p>
+                  <p className="text-sm font-medium text-foreground">{o.id} · {o.make} {o.model}</p>
                   <p className="truncate text-xs text-muted-foreground">{o.issue}</p>
                 </div>
                 <div className="hidden text-right sm:block">

@@ -1,32 +1,40 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { authService } from '../services/authService.js'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(() => authService.getSession())
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  const login = useCallback(async (email, password) => {
-    setLoading(true)
-    try {
-      const s = await authService.login(email, password)
-      setSession(s)
-      return s
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    let mounted = true
+    authService
+      .fetchMe()
+      .then((s) => {
+        if (mounted) setSession(s)
+      })
+      .catch(() => {
+        if (mounted) setSession(null)
+      })
+      .finally(() => {
+        if (mounted) setLoading(false)
+      })
+    return () => {
+      mounted = false
     }
   }, [])
 
+  const login = useCallback(async (email, password) => {
+    const s = await authService.login(email, password)
+    setSession(s)
+    return s
+  }, [])
+
   const register = useCallback(async (data) => {
-    setLoading(true)
-    try {
-      const s = await authService.register(data)
-      setSession(s)
-      return s
-    } finally {
-      setLoading(false)
-    }
+    const s = await authService.register(data)
+    setSession(s)
+    return s
   }, [])
 
   const logout = useCallback(async () => {

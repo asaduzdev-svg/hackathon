@@ -1,6 +1,8 @@
 {
   "common": {
     "appName": "ServiceCore",
+    "appTagline": "Kichik servis biznesi uchun oddiy CRM",
+    "slogan": "Buyurtmalar va to'lovlar bir joyda",
     "search": "Qidirish",
     "create": "Yaratish",
     "add": "Qo'shish",
@@ -26,7 +28,7 @@
     "status": "Holat",
     "date": "Sana",
     "customer": "Mijoz",
-    "worker": "Xodim",
+    "worker": "Usta",
     "price": "Narx",
     "paid": "To'langan",
     "remaining": "Qolgan",
@@ -57,55 +59,51 @@
     "appearance": "Ko'rinish",
     "light": "Yorug'",
     "dark": "Qorong'i",
-    "system": "Tizim bo'yicha",
+    "system": "Tizim",
     "unpaid": "To'lanmagan",
     "sum": "so'm",
-    "slogan": "Servis bizneslar uchun oddiy CRM"
+    "currency": "UZS",
+    "created": "Yaratildi",
+    "updated": "Yangilandi",
+    "device": "Qurilma",
+    "description": "Tavsif"
   },
   "nav": {
-    "main": "ASOSIY",
-    "business": "BIZNES",
-    "system": "TIZIM",
     "dashboard": "Boshqaruv paneli",
     "orders": "Buyurtmalar",
+    "cars": "Moshinalar",
+    "admin": "Adminlar",
+    "workers": "Ustalar",
     "customers": "Mijozlar",
-    "appointments": "Qabullar",
-    "workers": "Xodimlar",
     "payments": "To'lovlar",
     "inventory": "Ombor",
-    "reports": "Hisobotlar",
-    "settings": "Sozlamalar"
+    "worker": "Xodim paneli",
+    "consumer": "Mening kabinetim",
+    "settings": "Sozlamalar",
+    "groupMain": "Asosiy",
+    "groupGeneral": "Umumiy"
   },
   "sidebar": {
-    "hint": "Kichik ustaxona uchun CRM — buyurtmalar, mijozlar va to'lovlar bir joyda."
+    "hint": "Kichik servis biznesi uchun CRM — buyurtmalar, mijozlar va to'lovlar bir joyda."
   },
   "roles": {
     "owner": "Egasi",
-    "worker": "Xodim",
+    "worker": "Usta",
     "customer": "Mijoz"
   },
   "status": {
     "order": {
       "new": "Yangi",
-      "waiting": "Kutilmoqda",
       "diagnosing": "Diagnostika",
       "repairing": "Ta'mirda",
       "ready": "Tayyor",
       "completed": "Yakunlangan",
-      "cancelled": "Bekor qilingan",
-      "no_show": "Kelmagan"
+      "cancelled": "Bekor qilingan"
     },
     "payment": {
       "unpaid": "To'lanmagan",
       "partial": "Qisman",
       "paid": "To'langan"
-    },
-    "appointment": {
-      "confirmed": "Tasdiqlangan",
-      "waiting": "Kutilmoqda",
-      "completed": "Yakunlangan",
-      "cancelled": "Bekor qilingan",
-      "no_show": "Kelmagan"
     },
     "inventory": {
       "in_stock": "Mavjud",
@@ -113,12 +111,27 @@
       "out_of_stock": "Tugagan"
     }
   },
-  "deviceType": {
+  "paymentMethod": {
+    "cash": "Naqd",
+    "card": "Karta",
+    "transfer": "O'tkazma"
+  },
+  "carType": {
+    "sedan": "Sedan",
+    "suv": "SUV / Crossover",
+    "hatchback": "Xetchbek",
+    "minivan": "Miniven",
+    "pickup": "Pikap"
+  },
+  "devices": {
     "phone": "Telefon",
     "laptop": "Noutbuk",
-    "computer": "Kompyuter",
     "tablet": "Planshet",
-    "macbook": "MacBook"
+    "computer": "Kompyuter",
+    "printer": "Printer",
+    "tv": "Televizor",
+    "console": "O'yin konsoli",
+    "other": "Boshqa"
   },
   "priority": {
     "low": "Past",
@@ -128,10 +141,14 @@
   },
   "auth": {
     "title": "Tizimga kirish",
-    "subtitle": "Ustaxonangizni boshqaring",
-    "email": "Email",
+    "subtitle": "Servis biznesingizni boshqaring",
+    "headline": "Servis biznesingizni aniqlik bilan boshqaring.",
+    "headlineLine2": "Buyurtmalar, to'lovlar va mijozlar — barchasi bir joyda.",
+    "description": "Mijozlar, buyurtmalar, to'lovlar va omborni bitta oddiy ish maydonida boshqaring.",
+    "email": "Email yoki telefon",
     "password": "Parol",
     "name": "Ism",
+    "phone": "Telefon",
     "submit": "Kirish",
     "noAccount": "Hisobingiz yo'qmi?",
     "registerLink": "Ro'yxatdan o'tish",
@@ -140,122 +157,112 @@
     "registerSubmit": "Ro'yxatdan o'tish",
     "haveAccount": "Hisobingiz bormi?",
     "loginLink": "Kirish",
-    "demoTitle": "Demo hisoblar",
-    "demoHint": "Bosish orqali ma'lumotlar to'ldiriladi",
-    "demoOwner": "Egasi (Sardor)",
-    "demoWorker": "Xodim (Bekzod)",
-    "demoCustomer": "Mijoz (Azizbek)",
     "invalidCredentials": "Email yoki parol noto'g'ri",
-    "passwordShort": "Parol kamida 6 belgidan iborat bo'lsin"
+    "networkError": "Tarmoq xatosi. Qaytadan urinib ko'ring.",
+    "passwordShort": "Parol kamida 6 ta belgidan iborat bo'lishi kerak"
   },
   "dashboard": {
     "greeting": {
-      "morning": "Xayrli tong, {{name}} 👋",
-      "afternoon": "Xayrli kun, {{name}} 👋",
-      "evening": "Xayrli kech, {{name}} 👋"
+      "morning": "Xayrli tong, {{name}}",
+      "afternoon": "Xayrli kun, {{name}}",
+      "evening": "Xayrli kech, {{name}}"
     },
-    "subtitle": "Bugun ustaxonangizda nimalar bo'lyapti?",
-    "kpi": {
-      "todayOrders": "Bugungi buyurtmalar",
-      "inRepair": "Ta'mirda",
-      "ready": "Tayyor",
-      "todayRevenue": "Bugungi daromad",
-      "unpaid": "Qarzdorlik",
-      "activeRepairs": "Faol ta'mirlashlar",
-      "readyForPickup": "Olib ketishga tayyor"
-    },
+    "subtitle": "Bugun biznesingizda nimalar bo'lyapti.",
     "delta": {
-      "up": "+{{value}} kechagidan",
-      "down": "{{value}} kechagidan",
-      "neutral": "Kechagidek"
+      "up": "{{value}} ga oshdi",
+      "down": "{{value}} ga kamaydi",
+      "neutral": "O'zgarishsiz"
     },
-    "activity": "Bugungi faoliyat",
-    "activityEmpty": "Bugun hali faoliyat yo'q",
-    "activeOrders": "Faol buyurtmalar",
-    "appointments": "Bugungi qabullar",
-    "inventoryAlerts": "Ombor ogohlantirishlari",
-    "lowStockNote": "{{count}} ta kam qoldi",
-    "revenueChart": "Daromad",
-    "range": {
-      "today": "Bugun",
-      "7d": "7 kun",
-      "30d": "30 kun"
+    "kpi": {
+      "todayRevenue": "Bugungi daromad",
+      "todayOrders": "Bugungi buyurtmalar",
+      "activeOrders": "Faol buyurtmalar",
+      "activeRepairs": "Faol ta'mirlashlar",
+      "readyForPickup": "Olib ketishga tayyor",
+      "unpaid": "Qarzdorlik"
     },
-    "viewAll": "Barchasini ko'rish",
-    "recentOrders": "Yangi buyurtmalar"
+    "viewAll": "Hammasini ko'rish",
+    "todaysWork": "Bugungi ishlar",
+    "todaysWorkEmpty": "Bugun faol buyurtmalar yo'q.",
+    "recentOrders": "So'nggi buyurtmalar",
+    "recentOrdersEmpty": "Hozircha buyurtmalar yo'q.",
+    "lowStock": "Kam qolgan mahsulotlar",
+    "lowStockEmpty": "Ombor yaxshi holatda.",
+    "lowStockNote": "{{count}} ta mahsulot kam qoldi",
+    "viewInventory": "Omborni ko'rish",
+    "activity": "So'nggi faoliyat",
+    "activityEmpty": "Faoliyat hali yo'q",
+    "createOrderCta": "Yangi buyurtma",
+    "createOrderHint": "Mijoz qabul qilish yoki yangi ta'mir yaratish"
   },
   "orders": {
     "title": "Buyurtmalar",
-    "subtitle": "Barcha ta'mirlash buyurtmalarini boshqaring",
+    "subtitle": "Barcha ta'mirlash buyurtmalarini qabul qilishdan to yakunigacha boshqaring.",
     "create": {
       "title": "Buyurtma yaratish",
-      "subtitle": "Ta'mirlash ma'lumotlarini kiriting",
+      "subtitle": "Ta'mirlash buyurtmasi uchun ma'lumot kiriting",
       "newCustomer": "Yangi mijoz",
       "existingCustomer": "Mavjud mijoz",
       "selectCustomer": "Mijozni tanlang",
       "customerName": "Mijoz ismi",
       "customerPhone": "Mijoz telefoni",
-      "customerTelegram": "Telegram (ixtiyoriy)",
-      "deviceType": "Qurilma turi",
-      "brand": "Brend",
+      "deviceType": "Avtomobil turi",
+      "brand": "Marka",
       "model": "Model",
-      "imei": "Seriya / IMEI",
+      "plate": "Davlat raqami",
+      "year": "Yil",
       "issue": "Muammo",
-      "issuePlaceholder": "Masalan: Ekran ishlamayapti",
-      "price": "Narx (so'm)",
+      "issuePlaceholder": "Masalan: dvigatel ovozi, tormoz, suspenziya",
+      "price": "Narx",
+      "initialPayment": "Boshlang'ich to'lov",
       "priority": "Prioritet",
-      "worker": "Xodim",
+      "worker": "Usta",
+      "day": "Kun",
+      "hour": "Soat",
       "expectedDate": "Kutilayotgan sana",
       "notes": "Izohlar",
+      "submit": "Buyurtma yaratish",
       "success": "Buyurtma yaratildi"
     },
-    "search": "ID, mijoz, qurilma yoki telefon bo'yicha qidirish...",
+    "search": "ID, mijoz, telefon yoki avtomobil...",
     "filterStatus": "Holat",
     "filterWorker": "Xodim",
-    "filterPriority": "Prioritet",
-    "filterDate": "Sana",
-    "dateRange": {
-      "all": "Barcha vaqt",
-      "today": "Bugun",
-      "week": "Oxirgi 7 kun",
-      "month": "Oxirgi 30 kun"
-    },
+    "filterAll": "Barchasi",
     "col": {
       "id": "Buyurtma",
       "customer": "Mijoz",
-      "device": "Qurilma",
+      "device": "Avtomobil",
       "problem": "Muammo",
       "worker": "Xodim",
       "status": "Holat",
       "payment": "To'lov",
       "price": "Narx",
       "date": "Sana",
-      "action": ""
+      "remaining": "Qolgan"
     },
     "open": "Ochish",
     "empty": "Hozircha buyurtmalar yo'q",
-    "emptyCta": "Ustaxonangizni boshqarishni boshlash uchun birinchi buyurtmani yarating.",
+    "emptyCta": "Birinchi buyurtmani yarating va biznesni boshqarishni boshlang.",
     "detailTitle": "Buyurtma {{id}}",
     "section": {
       "customer": "Mijoz",
-      "device": "Qurilma",
-      "repair": "Ta'mirlash",
+      "service": "Xizmat",
+      "assignment": "Usta",
       "payment": "To'lov",
-      "timeline": "Tarix"
+      "timeline": "Status tarixi",
+      "activity": "Faoliyat"
     },
-    "serial": "Seriya / IMEI",
-    "condition": "Holati",
-    "diagnosis": "Diagnostika",
     "expectedDate": "Kutilayotgan sana",
     "createdAt": "Yaratilgan",
     "totalPrice": "Jami",
     "paidAmount": "To'langan",
     "remainingAmount": "Qolgan",
     "changeStatus": "Holatni o'zgartirish",
-    "assignWorker": "Xodim tayinlash",
+    "assignWorker": "Usta tayinlash",
     "addPayment": "To'lov qo'shish",
     "addNote": "Izoh qo'shish",
     "contact": "Bog'lanish",
+    "viewCustomer": "Mijozni ko'rish",
     "cancelOrder": "Buyurtmani bekor qilish",
     "cancelOrderTitle": "Buyurtma bekor qilinsinmi?",
     "cancelOrderText": "Buyurtma 'bekor qilingan' deb belgilanadi. Tarix saqlanadi.",
@@ -268,28 +275,29 @@
     },
     "timeline": {
       "created": "Buyurtma yaratildi",
-      "assigned": "{{worker}}ga tayinlandi",
-      "waiting": "Ishga tushirilishi kutilmoqda",
+      "assigned": "{{worker}} ga tayinlandi",
       "diagnosis": "Diagnostika boshlandi",
       "repair": "Ta'mirlash boshlandi",
       "ready": "Olib ketishga tayyor",
       "completed": "Yakunlandi",
       "payment": "{{amount}} to'lov qabul qilindi",
       "cancelled": "Bekor qilindi",
-      "no_show": "Mijoz kelmadi"
+      "note": "Izoh qo'shildi"
     },
-    "notFound": "Buyurtma topilmadi"
+    "notFound": "Buyurtma topilmadi",
+    "notFoundHint": "Bunday buyurtma mavjud emas."
   },
   "customers": {
     "title": "Mijozlar",
-    "subtitle": "Mijozlar bazasini boshqaring",
+    "subtitle": "Har bir mijoz va ularning servis tarixini bir joyda saqlang.",
     "create": "Mijoz qo'shish",
+    "add": "Mijoz qo'shish",
     "search": "Ism yoki telefon bo'yicha qidirish...",
     "col": {
       "name": "Ism",
       "phone": "Telefon",
       "orders": "Buyurtmalar",
-      "totalSpent": "Jami xarajat",
+      "totalSpent": "Jami sarflagan",
       "lastVisit": "Oxirgi tashrif",
       "status": "Holat"
     },
@@ -297,83 +305,42 @@
     "inactive": "No faol",
     "empty": "Hozircha mijozlar yo'q",
     "emptyCta": "Birinchi mijozni qo'shing.",
-    "detail": {
-      "profile": "Profil",
-      "orders": "Buyurtmalar tarixi",
-      "payments": "To'lovlar tarixi",
-      "notes": "Izohlar",
-      "telegram": "Telegram"
-    },
-    "createTitle": "Mijoz qo'shish",
-    "lastVisit": "Oxirgi tashrif"
-  },
-  "workers": {
-    "title": "Xodimlar",
-    "subtitle": "Jamoangizni boshqaring",
-    "add": "Xodim qo'shish",
-    "specialization": "Ixtisoslik",
-    "activeOrders": "Faol buyurtmalar",
-    "completedOrders": "Yakunlangan",
-    "todayLoad": "Bugungi yuklama",
-    "empty": "Xodimlar yo'q",
-    "emptyCta": "Birinchi xodimni qo'shing.",
-    "createTitle": "Xodim qo'shish",
+    "createTitle": "Yangi mijoz",
     "createName": "Ism",
     "createPhone": "Telefon",
-    "createSpecialization": "Ixtisoslik",
-    "phoneRepair": "Telefon ta'miri",
-    "computerRepair": "Kompyuter ta'miri",
-    "laptopRepair": "Noutbuk / MacBook",
-    "tabletRepair": "Planshet"
-  },
-  "appointments": {
-    "title": "Qabullar",
-    "subtitle": "Mijozlarning kelish vaqtlarini boshqaring",
-    "create": "Yangi qabul",
-    "tab": {
-      "today": "Bugun",
-      "upcoming": "Kelgusi",
-      "all": "Barchasi"
-    },
-    "markNoShow": "Kelmagan deb belgilash",
-    "noShowTitle": "Kelmagan deb belgilansinmi?",
-    "noShowText": "Mijoz kelmadi. Qabul 'kelmagan' deb belgilanadi va hisobotlarda qayd etiladi.",
-    "markCompleted": "Yakunlangan",
-    "confirm": "Tasdiqlash",
-    "cancel": "Bekor qilish",
-    "empty": "Qabullar yo'q",
-    "emptyCta": "Yangi qabul yarating.",
-    "createTitle": "Yangi qabul",
-    "createDate": "Sana",
-    "createTime": "Vaqt",
-    "createCustomer": "Mijoz",
-    "createService": "Xizmat",
-    "createWorker": "Xodim",
-    "servicePlaceholder": "Masalan: iPhone 13 ekran almashtirish"
+    "createNotes": "Izoh",
+    "lastVisit": "Oxirgi tashrif",
+    "detail": {
+      "orders": "Buyurtmalar tarixi",
+      "stats": "Ko'rsatkichlar",
+      "totalOrders": "Jami buyurtmalar",
+      "totalSpent": "Jami sarflagan",
+      "outstanding": "Qarzdorlik",
+      "createOrder": "Yangi buyurtma",
+      "profile": "Profil",
+      "payments": "To'lovlar",
+      "notes": "Izohlar",
+      "telegram": "Telegram"
+    }
   },
   "payments": {
     "title": "To'lovlar",
-    "subtitle": "Barcha to'lovlarni kuzating",
+    "subtitle": "Biznesga tushayotgan mablag'larni kuzating.",
     "card": {
       "todayRevenue": "Bugungi daromad",
       "collected": "Jami yig'ilgan",
+      "partial": "Qisman to'lovlar",
       "unpaid": "Qarzdorlik",
-      "pending": "Kutilayotgan to'lovlar"
+      "pending": "Kutilayotgan"
     },
     "search": "Buyurtma yoki mijoz bo'yicha qidirish...",
     "col": {
-      "id": "To'lov ID",
+      "id": "To'lov",
       "order": "Buyurtma",
       "customer": "Mijoz",
       "amount": "Summa",
       "method": "Usul",
-      "date": "Sana",
-      "status": "Holat"
-    },
-    "method": {
-      "cash": "Naqd",
-      "card": "Karta",
-      "transfer": "O'tkazma"
+      "date": "Sana"
     },
     "addPayment": "To'lov qo'shish",
     "add": {
@@ -381,14 +348,15 @@
       "order": "Buyurtma",
       "remaining": "Qolgan summa",
       "amount": "Summa",
-      "method": "Usul"
+      "method": "Usul",
+      "submit": "Saqlash"
     },
     "empty": "To'lovlar yo'q",
-    "debt": "Qarzdorlik"
+    "emptyCta": "Birinchi to'lov qabul qilinganda bu yerda ko'rinadi."
   },
   "inventory": {
     "title": "Ombor",
-    "subtitle": "Ehtiyot qismlar zaxirasini boshqaring",
+    "subtitle": "Qanday ehtiyot qismlar va materiallar borligini bilib turing.",
     "add": "Mahsulot qo'shish",
     "edit": "Tahrirlash",
     "search": "Mahsulot nomi bo'yicha qidirish...",
@@ -402,138 +370,215 @@
       "sellingPrice": "Sotuv narxi",
       "status": "Holat"
     },
+    "stockValue": "Zaxira qiymati",
     "addStock": "Zaxira qo'shish",
     "addStockTitle": "Zaxira qo'shish",
     "addStockQty": "Qo'shiladigan miqdor",
     "addStockNote": "Izoh",
     "category": {
-      "screen": "Ekran",
+      "filter": "Filtr",
+      "oil": "Moy",
+      "brake": "Tormoz",
+      "suspension": "Podveska",
+      "cooling": "Sovutish",
+      "body": "Kuzov",
       "battery": "Akumulyator",
-      "port": "Zaryad ulagichi",
       "component": "Komponent",
       "accessory": "Aksessuar"
     },
-    "history": "Tarix",
-    "historyEmpty": "Tarix bo'sh",
     "empty": "Ombor bo'sh",
     "emptyCta": "Birinchi mahsulotni qo'shing.",
     "lowStock": "Kam qoldi",
     "outOfStock": "Tugagan",
-    "stockValue": "Zaxira qiymati"
-  },
-  "reports": {
-    "title": "Hisobotlar",
-    "subtitle": "Ustaxona ko'rsatkichlari",
-    "range": {
-      "today": "Bugun",
-      "7d": "7 kun",
-      "30d": "30 kun"
+    "inStock": "Mavjud",
+    "metrics": {
+      "total": "Jami mahsulotlar",
+      "lowStock": "Kam qolgan",
+      "outOfStock": "Tugagan"
     },
-    "kpi": {
-      "revenue": "Daromad",
-      "orders": "Buyurtmalar",
-      "completed": "Yakunlangan",
-      "cancelled": "Bekor qilingan",
-      "noShow": "Kelmagan",
-      "avgOrder": "O'rtacha buyurtma"
-    },
-    "revenueChart": "Daromad grafigi",
-    "workerPerformance": "Xodimlar samaradorligi",
-    "workerCol": {
-      "worker": "Xodim",
-      "completed": "Yakunlangan",
-      "revenue": "Daromad",
-      "avg": "O'rtacha"
-    },
-    "popularServices": "Ommabop xizmatlar",
-    "ordersCount": "{{count}} ta buyurtma",
-    "inventoryReport": "Ombor hisoboti",
-    "stockValue": "Zaxira qiymati",
-    "lowStockItems": "Kam zaxira",
-    "topItems": "Eng qimmat mahsulotlar",
-    "empty": "Hisobot uchun ma'lumot yo'q"
+    "createTitle": "Yangi mahsulot",
+    "createName": "Nomi",
+    "createCategory": "Kategoriya",
+    "createQuantity": "Miqdori",
+    "createMinimum": "Minimal miqdor",
+    "createPurchasePrice": "Xarid narxi",
+    "createSellingPrice": "Sotuv narxi"
   },
   "settings": {
     "title": "Sozlamalar",
-    "subtitle": "Ustaxona va tizim sozlamalari",
+    "subtitle": "Hisobingiz va ilova sozlamalari.",
     "section": {
-      "business": "Biznes",
       "profile": "Profil",
-      "notifications": "Bildirishnomalar",
       "appearance": "Ko'rinish",
       "language": "Til",
-      "danger": "Xavfli hudud"
+      "account": "Hisob",
+      "telegram": "Telegram bot"
     },
-    "business": {
-      "name": "Ustaxona nomi",
-      "phone": "Telefon",
-      "address": "Manzil",
-      "hours": "Ish vaqti"
+    "telegram": {
+      "hint": "Botga /start yozing va bildirishnomalarni qabul qiling",
+      "notConfigured": "Bot sozlanmagan",
+      "connected": "Ulangan",
+      "subscribers": "obunachi chat",
+      "notify": "Bildirishnomalarni Telegramga yuborish",
+      "openBot": "Botni ochish",
+      "test": "Test xabar",
+      "testSent": "Test xabar yuborildi",
+      "testFailed": "Botga ulangan chat topilmadi. Botga /start yozing"
     },
     "profile": {
       "name": "Ism",
-      "phone": "Telefon",
-      "email": "Email"
-    },
-    "notif": {
-      "customer": "Mijoz bildirishnomalari",
-      "customerHint": "Buyurtma holati o'zgarganda mijozga xabar yuborish",
-      "appointments": "Qabul eslatmalari",
-      "appointmentsHint": "Qabuldan oldin eslatma yuborish",
-      "telegram": "Telegram bildirishnomalari",
-      "telegramHint": "Telegram bot keyingi bosqichda backend bilan ulanadi."
+      "email": "Email",
+      "phone": "Telefon"
     },
     "appearanceHint": "Ilova ko'rinishini tanlang",
     "languageHint": "Interfeys tilini tanlang",
-    "danger": {
-      "reset": "Demo ma'lumotlarni tiklash",
-      "resetHint": "Barcha ma'lumotlar boshlang'ich holatiga qaytadi",
-      "resetConfirm": "Barcha demo ma'lumotlar tiklasinmi?"
+    "accountHint": "Hisobdan chiqish",
+    "saved": "Saqlandi"
+  },
+  "globalSearch": {
+    "placeholder": "Mijoz yoki buyurtma qidirish...",
+    "empty": "Hech narsa topilmadi",
+    "hint": "Mijoz yoki buyurtma ID kiriting",
+    "orderResult": "Buyurtma",
+    "customerResult": "Mijoz"
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "markAllRead": "Hammasini o'qilgan deb belgilash",
+    "none": "Bildirishnomalar yo'q"
+  },
+  "worker": {
+    "title": "Xodim paneli — {{name}}",
+    "subtitle": "Sizga biriktirilgan buyurtmalar va ularning holati.",
+    "myOrders": "Mening buyurtmalarim",
+    "activeOrders": "Faol buyurtmalar",
+    "completedOrders": "Yakunlangan",
+    "earned": "Topilgan",
+    "notLinked": "Profil telefoni xodim ro'yxatiga mos emas. Administrator bilan bog'laning.",
+    "noOrders": "Sizga hali buyurtma biriktirilmagan",
+    "noOrdersCta": "Yangi buyurtmalar biriktirilganda bu yerda ko'rinadi.",
+    "allOrders": "Barcha buyurtmalarni ko'rish"
+  },
+  "consumer": {
+    "title": "Mening kabinetim — {{name}}",
+    "subtitle": "Buyurtmalaringiz va to'lov tarixingiz.",
+    "myOrders": "Buyurtmalarim",
+    "activeOrders": "Faol buyurtmalar",
+    "totalSpent": "Jami to'langan",
+    "addCar": "Moshina qo'shish",
+    "addCarCta": "Avtomobilingizni xizmat uchun qo'shing",
+    "telegram": "Telegram",
+    "paymentHistory": "To'lov tarixi",
+    "noPayments": "To'lovlar hali yo'q",
+    "noOrders": "Hozircha buyurtmalaringiz yo'q",
+    "noOrdersCta": "Buyurtma yaratilganda bu yerda ko'rinadi."
+  },
+  "cars": {
+    "title": "Moshinalar",
+    "subtitle": "Barcha avtomobillar bitta ro'yxatda.",
+    "search": "Moshina qidirish...",
+    "stat": {
+      "total": "Jami avtomobillar",
+      "inService": "Xizmatda",
+      "completed": "Bajarildi"
     },
-    "saved": "Sozlamalar saqlandi"
+    "col": {
+      "car": "Avtomobil",
+      "customer": "Mijoz",
+      "status": "Holat",
+      "visits": "Tashrif",
+      "completed": "Bajarildi",
+      "spent": "Jami to'lov",
+      "lastVisit": "Oxirgi tashrif"
+    },
+    "empty": "Avtomobillar topilmadi",
+    "emptyCta": "Buyurtma yaratilgach mashinalar shu yerda ko'rinadi.",
+    "totalSpent": "Umumiy summa: {{total}}"
+  },
+  "workers": {
+    "title": "Ustalar",
+    "subtitle": "Xodimlar va ularning ko'rsatkichlari.",
+    "create": "Usta qo'shish",
+    "createTitle": "Yangi usta",
+    "editTitle": "Ustani tahrirlash",
+    "search": "Usta qidirish...",
+    "stat": {
+      "total": "Jami ustalar",
+      "active": "Faol buyurtmalar",
+      "completed": "Bajarilgan ishlar"
+    },
+    "col": {
+      "worker": "Usta",
+      "spec": "Mutaxassislik",
+      "rating": "Reyting",
+      "active": "Faol",
+      "completed": "Bajarildi",
+      "joined": "Ishga kirgan"
+    },
+    "empty": "Ustalar topilmadi",
+    "emptyCta": "Birinchi ustani qo'shing.",
+    "placeholders": {
+      "name": "Ism Familiya"
+    },
+    "spec": {
+      "mechanic": "Mexanik",
+      "electrician": "Elektrchi",
+      "diagnostician": "Diagnost",
+      "painter": "Bo'yoqchi",
+      "tire": "Shina montaji",
+      "body repair": "Kuzov ta'miri"
+    }
+  },
+  "ai": {
+    "title": "AI yordamchi",
+    "subtitle": "Buyurtmalar, detallar va ta'mirlash bo'yicha maslahat",
+    "placeholder": "Savolingizni yozing...",
+    "send": "Yuborish",
+    "greeting": "Salom! Men AI yordamchiman. Buyurtma, avtomobil muammosi yoki ehtiyot detallar haqida so'rang.",
+    "poweredBy": "Groq AI",
+    "thinking": "O'ylab ko'ryapman...",
+    "error": "Javob olishda xatolik. Qayta urinib ko'ring.",
+    "quick": {
+      "parts": "Qanday detallar kerak bo'ladi?",
+      "diagnose": "Mashina tebranishi sababi",
+      "tip": "Biznes maslahati bering"
+    }
   },
   "toasts": {
     "orderCreated": "Buyurtma yaratildi",
     "orderUpdated": "Holat yangilandi",
     "paymentAdded": "To'lov qayd etildi",
-    "customerCreated": "Mijoz yaratildi",
-    "workerCreated": "Xodim qo'shildi",
+    "customerCreated": "Mijoz qo'shildi",
+    "inventoryCreated": "Mahsulot qo'shildi",
     "inventoryUpdated": "Ombor yangilandi",
     "stockAdded": "Zaxira qo'shildi",
-    "appointmentCreated": "Qabul yaratildi",
-    "appointmentUpdated": "Qabul yangilandi",
-    "noShowMarked": "Kelmagan deb belgilandi",
+    "workerAssigned": "Xodim tayinlandi",
     "orderCancelled": "Buyurtma bekor qilindi",
     "settingsSaved": "Sozlamalar saqlandi",
-    "dataReset": "Demo ma'lumotlar tiklandi",
-    "noteAdded": "Izoh qo'shildi",
     "loggedIn": "Xush kelibsiz",
     "loggedOut": "Tizimdan chiqdingiz",
-    "registered": "Hisob yaratildi"
+    "registered": "Hisob yaratildi",
+    "created": "Muvaffaqiyatli yaratildi",
+    "updated": "Muvaffaqiyatli yangilandi",
+    "error": "Xatolik yuz berdi",
+    "networkError": "Tarmoq xatosi"
   },
   "error": {
     "title": "Nimadir noto'g'ri ketdi",
-    "subtitle": "Bu ma'lumotlarni yuklab bo'lmadi.",
-    "retry": "Qayta urinish"
-  },
-  "notifications": {
-    "title": "Bildirishnomalar",
-    "markAllRead": "Hammasini o'qilgan deb belgilash",
-    "none": "Bildirishnomalar yo'q",
-    "orderCreated": "Yangi buyurtma {{id}} — {{customer}}",
-    "orderStatus": "{{id}} buyurtmasi: {{status}}",
-    "payment": "{{id}} uchun {{amount}} to'lov qabul qilindi",
-    "appointmentReminder": "Ertaga {{time}} da qabul — {{customer}}",
-    "noShow": "{{customer}} kelmagan deb belgilandi",
-    "markedRead": "Barcha bildirishnomalar o'qilgan deb belgilandi"
+    "subtitle": "Ma'lumotlarni yuklab bo'lmadi.",
+    "retry": "Qayta urinish",
+    "notFoundTitle": "Topilmadi",
+    "notFoundHint": "Bunday sahifa mavjud emas."
   },
   "validation": {
     "required": "Bu maydon to'ldirilishi shart",
     "email": "To'g'ri email kiriting",
     "phone": "To'g'ri telefon raqam kiriting",
     "price": "To'g'ri summa kiriting",
-    "selectCustomer": "Mijozni tanlang",
     "positive": "Qiymat musbat bo'lishi kerak",
-    "amountMax": "Summa qolgan qarzdan oshmasligi kerak"
+    "selectCustomer": "Mijozni tanlang",
+    "selectWorker": "Ustani tanlang",
+    "amountMax": "Summa qolgan qarzdan oshmasligi kerak",
+    "minLength": "Kamida {{count}} ta belgi"
   }
 }

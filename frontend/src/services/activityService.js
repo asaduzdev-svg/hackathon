@@ -1,17 +1,6 @@
-import { getState, updateState, wait } from './store.js'
+import { dashboardApi } from './modules/dashboardApi.js'
 
 export const activityService = {
-  async add(entry) {
-    await wait(40)
-    updateState((s) => ({
-      ...s,
-      activity: [entry, ...s.activity].slice(0, 80),
-    }))
-    return entry
-  },
-
-  async list() {
-    await wait(80)
-    return getState().activity
-  },
+  list: () => dashboardApi.activity().then((r) => r.data || []),
+  dashboard: () => dashboardApi.summary().then((r) => r.data),
 }

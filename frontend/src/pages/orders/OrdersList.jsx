@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Plus, Wrench } from 'lucide-react'
 import { useOrders } from '../../hooks/useOrders.js'
+import { useApp } from '../../context/AppContext.jsx'
+import { useAuth } from '../../context/AuthContext.jsx'
 import { useI18n } from '../../i18n/index.jsx'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import {
@@ -23,14 +25,20 @@ import Button from '../../components/common/Button.jsx'
 import Badge from '../../components/common/Badge.jsx'
 import Table from '../../components/common/Table.jsx'
 import Card from '../../components/common/Card.jsx'
+import { SkeletonRows } from '../../components/common/Skeleton.jsx'
 
 export default function OrdersList() {
   const { t } = useI18n()
   const { orders } = useOrders()
+  const { workers, loading } = useApp()
+  const { user } = useAuth()
   const navigate = useNavigate()
+  // Faqat consumer (CUSTOMER) yangi buyurtma berishi mumkin.
+  const canCreate = user?.role === 'CUSTOMER'
 
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('all')
+  const [worker, setWorker] = useState('all')
   const debounced = useDebounce(search)
 
   const filtered = useMemo(() => {
@@ -38,12 +46,13 @@ export default function OrdersList() {
     return orders
       .filter((o) => {
         if (status !== 'all' && o.status !== status) return false
+        if (worker !== 'all' && o.workerId !== worker) return false
         if (!q) return true
-        const hay = `${o.id} ${o.customerName} ${o.phone} ${o.brand} ${o.model} ${o.issue}`
+        const hay = `${o.id} ${o.customerName} ${o.phone} ${o.make} ${o.model} ${o.plate} ${o.issue} ${o.workerName}`
         return hay.toLowerCase().includes(q)
       })
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  }, [orders, debounced, status])
+  }, [orders, debounced, status, worker])
 
   const columns = [
     { key: 'id', header: t('orders.col.id'), render: (o) => <span className="font-semibold text-foreground">{o.id}</span> },
@@ -62,10 +71,15 @@ export default function OrdersList() {
       header: t('orders.col.device'),
       render: (o) => (
         <div>
-          <p className="text-foreground">{o.brand} {o.model}</p>
-          <p className="text-xs text-muted">{o.issue}</p>
+          <p className="text-foreground">{o.make} {o.model}</p>
+          <p className="text-xs text-muted">{o.plate}</p>
         </div>
       ),
+    },
+    {
+      key: 'worker',
+      header: t('orders.col.worker'),
+      render: (o) => (o.workerName ? <span className="text-foreground">{o.workerName}</span> : <span className="text-muted">—</span>),
     },
     {
       key: 'status',
@@ -93,7 +107,7 @@ export default function OrdersList() {
       </div>
       <div className="mt-1.5">
         <p className="text-sm font-medium text-foreground">{o.customerName}</p>
-        <p className="truncate text-xs text-muted-foreground">{o.brand} {o.model} · {o.issue}</p>
+        <p className="truncate text-xs text-muted-foreground">{o.make} {o.model} · {o.plate}</p>
       </div>
       <div className="mt-2.5 flex items-center justify-between text-sm">
         <span className="font-medium tabular-nums text-foreground">{formatCurrency(o.price)}</span>
@@ -107,9 +121,11 @@ export default function OrdersList() {
   return (
     <div>
       <PageHeader title={t('orders.title')} subtitle={t('orders.subtitle')}>
-        <Link to="/orders/new">
-          <Button icon={Plus}>{t('orders.create.title')}</Button>
-        </Link>
+        {canCreate && (
+          <Link to="/orders/new">
+            <Button icon={Plus}>{t('orders.create.title')}</Button>
+          </Link>
+        )}
       </PageHeader>
 
       <div className="mb-4 flex flex-col gap-2.5 sm:flex-row sm:items-center">
@@ -125,8 +141,22 @@ export default function OrdersList() {
             <option key={s} value={s}>{t(ORDER_STATUS_LABEL_KEY[s])}</option>
           ))}
         </Select>
+        <Select
+          value={worker}
+          onChange={(e) => setWorker(e.target.value)}
+          className="sm:w-48"
+          aria-label={t('orders.filterWorker')}
+        >
+          <option value="all">{t('orders.filterWorker')}: {t('common.all')}</option>
+          {workers.map((w) => (
+            <option key={w.id} value={w.id}>{w.name}</option>
+          ))}
+        </Select>
       </div>
 
+      {loading ? (
+        <SkeletonRows count={6} />
+      ) : (
       <Table
         columns={columns}
         rows={filtered}
@@ -136,13 +166,14 @@ export default function OrdersList() {
           icon: Wrench,
           title: t('orders.empty'),
           description: t('orders.emptyCta'),
-          action: (
+          action: canCreate ? (
             <Link to="/orders/new">
               <Button size="sm" icon={Plus}>{t('orders.create.title')}</Button>
             </Link>
-          ),
+          ) : null,
         }}
       />
+      )}
     </div>
   )
 }

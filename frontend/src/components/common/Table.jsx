@@ -1,88 +1,141 @@
-import { Skeleton } from './Skeleton.jsx'
 import EmptyState from './EmptyState.jsx'
 
+// Data table. Two APIs:
+//   1. <Table columns rows onRowClick mobileRender empty />  (pages)
+//   2. semantic children: <Table><THead>...</THead><TBody>...</TBody></Table>
 export default function Table({
   columns = [],
   rows = [],
-  keyField = 'id',
   onRowClick,
   mobileRender,
-  loading = false,
-  empty = null,
+  empty,
   className = '',
+  children,
 }) {
-  if (loading) {
+  const hasRows = rows.length > 0
+
+  if (columns.length > 0 && !hasRows) {
     return (
-      <div className="rounded-xl border border-border bg-surface shadow-card">
-        <Skeleton className="h-10 rounded-none border-b border-border" />
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="flex items-center gap-4 border-b border-border px-4 py-3.5 last:border-0">
-            {columns.map((c) => (
-              <Skeleton key={c.key} className="h-3.5 flex-1" />
-            ))}
+      <div className={className}>
+        {empty ? (
+          <EmptyState
+            icon={empty.icon}
+            title={empty.title}
+            description={empty.description}
+            action={empty.action}
+          />
+        ) : (
+          <div className="rounded-xl border border-dashed border-border bg-surface px-5 py-12 text-center text-sm text-muted-foreground">
+            —
           </div>
-        ))}
+        )}
       </div>
     )
   }
 
-  if (rows.length === 0) {
-    if (empty) {
-      return (
-        <div className="rounded-xl border border-border bg-surface shadow-card">
-          <EmptyState icon={empty.icon} title={empty.title} description={empty.description} action={empty.action} />
+  if (columns.length > 0) {
+    const body = (
+      <tbody>
+        {rows.map((row, idx) => (
+          <tr
+            key={row?.id || idx}
+            onClick={onRowClick ? () => onRowClick(row) : undefined}
+            className={`${onRowClick ? 'group cursor-pointer transition-colors hover:bg-surface-muted' : ''}`}
+          >
+            {columns.map((col) => {
+              const alignCls =
+                col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
+              return (
+                <td
+                  key={col.key}
+                  className={`border-b border-border px-3 py-3 align-middle text-sm ${alignCls} ${col.className || ''}`}
+                >
+                  {col.render ? col.render(row) : row[col.key]}
+                </td>
+              )
+            })}
+          </tr>
+        ))}
+      </tbody>
+    )
+
+    return (
+      <div className={className}>
+        <div className={`overflow-x-auto ${mobileRender ? 'hidden md:block' : ''}`}>
+          <table className="w-full border-separate border-spacing-0 text-sm">
+            <thead>
+              <tr>
+                {columns.map((col) => {
+                  const alignCls =
+                    col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
+                  return (
+                    <th
+                      key={col.key}
+                      className={`border-b border-border bg-surface px-3 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground ${alignCls}`}
+                    >
+                      {col.header}
+                    </th>
+                  )
+                })}
+              </tr>
+            </thead>
+            {body}
+          </table>
         </div>
-      )
-    }
-    return null
+        {mobileRender && (
+          <div className="flex flex-col gap-3 md:hidden">
+            {rows.map((row, idx) => (
+              <div key={row?.id || idx}>{mobileRender(row)}</div>
+            ))}
+          </div>
+        )}
+      </div>
+    )
   }
 
-  return (
-    <>
-      <div className={`hidden overflow-x-auto rounded-xl border border-border bg-surface shadow-card md:block ${className}`}>
-        <table className="w-full min-w-[720px] text-left text-sm">
-          <thead>
-            <tr className="border-b border-border bg-surface-muted/60">
-              {columns.map((col) => (
-                <th
-                  key={col.key}
-                  className={`whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground ${
-                    col.align === 'right' ? 'text-right' : ''
-                  }`}
-                >
-                  {col.header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr
-                key={row[keyField]}
-                onClick={onRowClick ? () => onRowClick(row) : undefined}
-                className={`border-b border-border transition-colors last:border-0 ${
-                  onRowClick ? 'cursor-pointer hover:bg-surface-hover' : ''
-                }`}
-              >
-                {columns.map((col) => (
-                  <td
-                    key={col.key}
-                    className={`px-4 py-3 align-middle text-foreground ${
-                      col.align === 'right' ? 'text-right' : ''
-                    }`}
-                  >
-                    {col.render ? col.render(row) : row[col.key]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  // Semantic children API
+  return <div className={`overflow-x-auto ${className}`}>{children}</div>
+}
 
-      {mobileRender && (
-        <div className="flex flex-col gap-3 md:hidden">{rows.map((row) => mobileRender(row))}</div>
-      )}
-    </>
+export function THead({ children }) {
+  return (
+    <thead>
+      <tr>{children}</tr>
+    </thead>
+  )
+}
+
+export function TH({ children, align = 'left', className = '' }) {
+  const alignCls = align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'
+  return (
+    <th
+      className={`border-b border-border bg-surface px-3 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground ${alignCls} ${className}`}
+    >
+      {children}
+    </th>
+  )
+}
+
+export function TBody({ children }) {
+  return <tbody>{children}</tbody>
+}
+
+export function TR({ children, onClick, className = '' }) {
+  return (
+    <tr
+      onClick={onClick}
+      className={`group ${onClick ? 'cursor-pointer transition-colors hover:bg-surface-muted' : ''} ${className}`}
+    >
+      {children}
+    </tr>
+  )
+}
+
+export function TD({ children, align = 'left', className = '' }) {
+  const alignCls = align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'
+  return (
+    <td className={`border-b border-border px-3 py-3 align-middle text-sm ${alignCls} ${className}`}>
+      {children}
+    </td>
   )
 }

@@ -1,3 +1,5 @@
+// Order status palette — ServiceCore uses semantic, calm tones that
+// read well on mobile and in both light/dark themes.
 export const ORDER_STATUSES = ['new', 'diagnosing', 'repairing', 'ready', 'completed', 'cancelled']
 
 export const ORDER_STATUS_LABEL_KEY = {
@@ -9,31 +11,25 @@ export const ORDER_STATUS_LABEL_KEY = {
   cancelled: 'status.order.cancelled',
 }
 
-export const ORDER_STATUS_FLOW = {
-  new: ['diagnosing', 'cancelled'],
-  diagnosing: ['repairing', 'cancelled'],
-  repairing: ['ready', 'cancelled'],
-  ready: ['completed', 'cancelled'],
-  completed: [],
-  cancelled: [],
-}
-
+// Soft, semantic tones (bg + fg) instead of hard pill colors.
 export const ORDER_STATUS_TONE = {
   new: 'info',
   diagnosing: 'warning',
-  repairing: 'primary',
-  ready: 'info',
-  completed: 'success',
+  repairing: 'accent',
+  ready: 'success',
+  completed: 'muted',
   cancelled: 'danger',
 }
 
-export const STATUS_TIMELINE_KEY = {
-  new: 'orders.timeline.created',
-  diagnosing: 'orders.timeline.diagnosis',
-  repairing: 'orders.timeline.repair',
-  ready: 'orders.timeline.ready',
-  completed: 'orders.timeline.completed',
-  cancelled: 'orders.timeline.cancelled',
-}
-
 export const ACTIVE_STATUSES = ['new', 'diagnosing', 'repairing', 'ready']
+
+export const STATUS_FLOW = ['new', 'diagnosing', 'repairing', 'ready', 'completed']
+
+export const ORDER_STATUS_FLOW = {
+  new: ['diagnosing'],
+  diagnosing: ['repairing'],
+  repairing: ['ready'],
+  ready: ['completed'],
+  completed: [],
+  cancelled: [],
+}
