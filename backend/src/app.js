@@ -8,11 +8,21 @@ import { swaggerSpec } from './config/swagger.js'
 
 const app = express()
 
+// CORS — production'da aniq frontend domeniga ruxsat beramiz.
+// Development va serverless preview muhitlarida hamma originlarga ruxsat beramiz.
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'
+const allowedOrigins = FRONTEND_URL.split(',').map((s) => s.trim()).filter(Boolean)
+
 app.use(
   cors({
     origin(origin, cb) {
-      if (!origin) return cb(null, false)
-      return cb(null, origin)
+      // Same-origin (server o'ziga) yoki no-origin (Postman, server-side fetch) uchun ruxsat.
+      if (!origin) return cb(null, true)
+      if (allowedOrigins.length === 0) return cb(null, true)
+      if (allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+        return cb(null, true)
+      }
+      return cb(null, false)
     },
     credentials: true,
   }),

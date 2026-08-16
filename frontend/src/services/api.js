@@ -2,7 +2,11 @@
 //   - All requests carry credentials so the JWT cookie is sent.
 //   - On 401 (except for /auth/*) we try a single /auth/refresh and retry.
 //   - Thrown errors carry `status` and a translated-friendly message.
-const API_BASE = import.meta.env?.VITE_API_URL || 'https://khakaton-backend.onrender.com'
+// API_BASE default'ini "/api" qilib qo'ydik — Vercel'da bitta project bo'lsa,
+// frontend o'zining `/api/*` endpointini proxy qiladi. Alohida backend project
+// bo'lsa, VITE_API_URL environment variable orqali "https://backend.vercel.app"
+// ko'rinishida beriladi.
+const API_BASE = import.meta.env?.VITE_API_URL || ''
 const BASE = `${API_BASE}/api`
 
 let refreshPromise = null
