@@ -1,0 +1,6 @@
+2026-08-16 14:47:27.539 +05 [16250] LOG:  redirecting log output to logging collector process
+2026-08-16 14:47:27.539 +05 [16250] HINT:  Future log output will appear in directory "log".
+2026-08-16 15:01:57.215 +05 [19120] LOG:  redirecting log output to logging collector process
+2026-08-16 15:01:57.215 +05 [19120] HINT:  Future log output will appear in directory "log".
+2026-08-16 15:02:09.371 +05 [19229] LOG:  redirecting log output to logging collector process
+2026-08-16 15:02:09.371 +05 [19229] HINT:  Future log output will appear in directory "log".
